@@ -14,4 +14,5 @@ RUN npx -y pagefind@1.3.0 --site _site
 FROM nginx:1.27-alpine
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=search /src/_site /usr/share/nginx/html/kb
+RUN chmod -R a+rX /usr/share/nginx/html/kb
 EXPOSE 8080
