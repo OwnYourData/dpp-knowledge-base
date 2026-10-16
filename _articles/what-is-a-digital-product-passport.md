@@ -31,6 +31,7 @@ further:
 related:
   - role-based-access
   - public-availability
+  - dpp-roadmap
 ---
 
 <div class="tldr" markdown="1">
@@ -113,7 +114,7 @@ The ESPR itself sets no product-specific deadline. Each product group gets its o
 
 **Batteries** follow their own regulation, (EU) 2023/1542. From 18 February 2027, electric-vehicle batteries, batteries for light means of transport such as e-bikes and e-scooters, and industrial batteries above 2 kWh need a passport.
 
-Passports are also foreseen for construction products, toys and detergents, each under its own regulation and timetable.
+Passports are also foreseen for construction products, toys and detergents, each under its own regulation and timetable. Which product group is due when, and how far each one has got, is tracked in the [roadmap of delegated acts]({{ '/dpp-roadmap/' | relative_url }}).
 
 > Dates and the state of delegated acts change. This article was last reviewed on the date shown at the top; check EUR-Lex for the current legal text.
 {: .open}
