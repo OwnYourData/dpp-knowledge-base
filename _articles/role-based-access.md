@@ -29,6 +29,7 @@ related:
   - what-is-a-digital-product-passport
   - public-availability
   - dpp-roadmap
+  - dpp-manager
 ---
 
 <div class="tldr" markdown="1">
