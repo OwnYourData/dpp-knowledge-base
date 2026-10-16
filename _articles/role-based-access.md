@@ -2,7 +2,7 @@
 title: Role-based access to passport data
 description: Not every field of a passport is for everyone. How the DPP Service classifies passport data, who may read what, how access is granted and revoked, and how every access is logged.
 section: Concepts
-order: 1
+order: 2
 audience: economic operators, DPP service providers, developers
 last_reviewed: 2026-10-16
 image: /assets/img/access-classes.svg
@@ -27,6 +27,7 @@ further:
     what: the three access groups of the battery passport
 related:
   - what-is-a-digital-product-passport
+  - public-availability
 ---
 
 <div class="tldr" markdown="1">

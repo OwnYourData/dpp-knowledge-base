@@ -30,6 +30,7 @@ further:
     what: the EN 18222 lifecycle API of our public instance
 related:
   - role-based-access
+  - public-availability
 ---
 
 <div class="tldr" markdown="1">
