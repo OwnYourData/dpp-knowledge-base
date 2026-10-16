@@ -73,7 +73,8 @@ header.site nav a:hover, header.site nav a[aria-current] { color: var(--text); }
 .theme-toggle[data-mode="dark"] .icon-moon { display: none; }
 footer.site { margin-top: 64px; padding: 24px 0 40px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
 footer.site .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-footer.site a { color: var(--muted); margin-right: 16px; }
+footer.site a { color: var(--muted); }
+footer.site .wrap > div:last-child a { margin-right: 16px; }
 
 /* buttons, badges */
 .actions { display: flex; gap: 12px; flex-wrap: wrap; }
