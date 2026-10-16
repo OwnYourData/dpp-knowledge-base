@@ -6,7 +6,7 @@
 <meta name="color-scheme" content="light dark">
 <script>try{var t=localStorage.getItem("kb-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 {% seo %}
-<link rel="stylesheet" href="{{ '/assets/css/kb.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/kb.css' | relative_url }}?v={{ site.time | date: '%s' }}">
 {% if page.search %}<link rel="stylesheet" href="{{ '/pagefind/pagefind-ui.css' | relative_url }}">{% endif %}
 </head>
 <body>
