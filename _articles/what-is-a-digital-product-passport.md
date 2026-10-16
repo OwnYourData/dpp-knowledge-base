@@ -104,7 +104,7 @@ How systems exchange passports is set by harmonised standards from CEN and CENEL
 | EN 18222:2026 | APIs for lifecycle management and search |
 | EN 18223:2026 | system interoperability and data model |
 
-Two further standards, on access rights and security (prEN 18239) and on authentication and integrity (prEN 18246), were not among those cited.
+Two further standards, EN 18239 on access rights and security and EN 18246 on authentication and integrity, followed in September 2026; they are not yet cited in the Official Journal.
 
 ## When it becomes mandatory
 

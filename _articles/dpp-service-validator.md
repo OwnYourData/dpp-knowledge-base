@@ -29,9 +29,9 @@ further:
     url: "https://github.com/OwnYourData/dpp-criteria"
     what: the criteria and the list of services
 related:
+  - dpp-criteria
   - dpp-linter
   - public-availability
-  - dpp-manager
 ---
 
 <div class="tldr" markdown="1">

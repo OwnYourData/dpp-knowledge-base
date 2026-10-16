@@ -45,7 +45,7 @@ related:
 
 A passport serves very different readers. A consumer should see what a battery is made of and its carbon footprint. A recycler needs the detailed composition and how to take it apart. A market surveillance authority needs test results that a competitor should never see.
 
-The law already draws these lines. The Battery Regulation distinguishes three groups of readers for the battery passport: the general public, persons with a legitimate interest, and notified bodies, market surveillance authorities and the Commission. The draft standard on access rights, prEN 18239, asks for access rights at the level of individual attributes, defined through a controlled vocabulary.
+The law already draws these lines. The Battery Regulation distinguishes three groups of readers for the battery passport: the general public, persons with a legitimate interest, and notified bodies, market surveillance authorities and the Commission. The European standard on access rights, EN 18239, works at the same level: in its draft, it asked for access rights per individual attribute, defined through a controlled vocabulary.
 
 The DPP Service implements exactly that.
 
@@ -147,7 +147,7 @@ Entries are only ever added; the database itself refuses changes. They are kept 
 
 ## What is still open
 
-> The legal side is not finished. The Battery Regulation required the Commission to adopt rules on who counts as a person with a legitimate interest by 18 August 2026; that deadline passed without them. The access-rights standard prEN 18239 is still a draft. Until both are settled, the economic operator decides who receives a legitimate-interest grant. The classes and the grant mechanism do not depend on how that question is answered.
+> The legal side is not finished. The Battery Regulation required the Commission to adopt rules on who counts as a person with a legitimate interest by 18 August 2026; that deadline passed without them. The access-rights standard EN 18239 was published in September 2026 but is not yet cited in the Official Journal. Until both are settled, the economic operator decides who receives a legitimate-interest grant. The classes and the grant mechanism do not depend on how that question is answered.
 {: .open}
 
 Passports without a policy stay as they are: public as a whole, to every reader.
