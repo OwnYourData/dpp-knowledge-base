@@ -32,6 +32,7 @@ related:
   - public-availability
   - what-is-a-digital-product-passport
   - dpp-manager
+  - dpp-service-validator
 ---
 
 <div class="tldr" markdown="1">
