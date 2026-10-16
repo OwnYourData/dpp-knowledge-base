@@ -86,6 +86,10 @@ Two rules keep mistakes cheap:
 
 The service also tells the operator, on every write, how many attributes fell to the default and which rules matched nothing – a gap in a policy is visible, not silent.
 
+In the DPP Manager, nobody writes this JSON by hand. Each product type has a page *Access classes* that lists every field, the element it ends up in, and a choice of class. The data model of the product type can suggest a starting point:
+
+{% include figure.html src="/assets/img/screens/dpp-manager-access-classes.png" alt="Screenshot of the DPP Manager page 'Access classes: LED lamp'. A table lists fields such as Model, Manufacturer and Serial number, the passport element each ends up in, and a drop-down for who may read it. Serial number is set to Legitimate interest, as suggested by the structure; the others are Public." caption="Access classes for the LED lamp in the DPP Manager. The serial number is limited to readers with a legitimate interest, as the product's data model suggests." screenshot=true width="1456" height="839" %}
+
 ### Where the two parts are kept
 
 A passport with a policy is held as **two cards** at its custodian:
@@ -107,6 +111,10 @@ An **access grant** says: this reader, identified by its DID, may read these pas
 Whether a DID belongs to a market surveillance authority is not something the economic operator decides, and not something a service can tell from the DID alone. The service therefore relies on a published list of issuers it trusts to vouch for authorities.
 
 A grant lasts at most 365 days. Its issuer can revoke it at any time, and the revocation takes effect with the next read: the service works out each reader's classes from the registered grants on every request and keeps nothing in between.
+
+In the DPP Manager, granting access is a form: the reader's DID, an optional purpose, the passports it covers and how long it is valid. The page also shows which issuers the service trusts for authorities – rights the economic operator can neither give nor revoke.
+
+{% include figure.html src="/assets/img/screens/dpp-manager-access-rights.png" alt="Screenshot of the DPP Manager page 'Access rights', section 'Grant a legitimate interest': fields for the reader DID, a name, a purpose, the choice between selected passports and all passports, and a validity of 365 days, followed by the button 'Issue the access right'. Below, the section 'Authorities' lists the issuer the DPP Service trusts." caption="Granting a legitimate interest in the DPP Manager. Rights for authorities come from issuers the service trusts, not from the operator." screenshot=true width="1456" height="1507" %}
 
 ### Step 3: read
 
