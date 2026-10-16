@@ -1,0 +1,8 @@
+<a class="card" href="{{ include.article.url | relative_url }}">
+  <div class="thumb"><img src="{{ include.article.image | relative_url }}" alt="" loading="lazy"></div>
+  <div class="body">
+    <span class="meta">{{ include.article.section }}</span>
+    <h3>{{ include.article.title }}</h3>
+    <p>{{ include.article.description }}</p>
+  </div>
+</a>

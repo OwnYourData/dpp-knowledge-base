@@ -1,0 +1,62 @@
+---
+layout: default
+---
+{%- assign words = content | strip_html | number_of_words -%}
+{%- assign minutes = words | divided_by: 200 | plus: 1 -%}
+<article class="article" data-pagefind-body>
+  <nav class="crumbs" data-pagefind-ignore><a href="{{ '/' | relative_url }}">Knowledge Base</a> › {{ page.section }}</nav>
+
+  <h1>{{ page.title }}</h1>
+  <p class="lead">{{ page.description }}</p>
+  <div class="byline" data-pagefind-ignore>
+    {% if page.audience %}<span>For <strong>{{ page.audience }}</strong></span>{% endif %}
+    <span>Last reviewed <time datetime="{{ page.last_reviewed | date_to_xmlschema }}">{{ page.last_reviewed | date: "%-d %B %Y" }}</time></span>
+    <span>{{ minutes }} min read</span>
+  </div>
+
+  {% if page.image %}
+  <figure class="fig hero-fig">
+    <div class="frame"><img src="{{ page.image | relative_url }}" alt="{{ page.image_alt }}" width="{{ page.image_width | default: 960 }}" height="{{ page.image_height | default: 540 }}"></div>
+    {% if page.image_caption %}<figcaption>{{ page.image_caption }}</figcaption>{% endif %}
+  </figure>
+  {% endif %}
+
+  <div class="prose">
+    {{ content }}
+  </div>
+
+  {% if page.cta %}
+  <section class="cta" data-pagefind-ignore>
+    <h2>{{ page.cta.title }}</h2>
+    <p>{{ page.cta.text }}</p>
+    <div class="actions">
+      {% for b in page.cta.buttons %}
+      <a class="btn {% if forloop.first %}primary{% else %}secondary{% endif %}" href="{{ b.url }}">{{ b.label }}</a>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+
+  {% if page.further %}
+  <section class="further" data-pagefind-ignore>
+    <h2>Further reading</h2>
+    <ul>
+      {% for f in page.further %}
+      <li><a href="{{ f.url }}">{{ f.title }}</a>{% if f.what %}<span class="what">{{ f.what }}</span>{% endif %}</li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+
+  {% if page.related %}
+  <section class="related" data-pagefind-ignore>
+    <h2>Related articles</h2>
+    <div class="grid">
+      {% for slug in page.related %}
+        {% assign r = site.articles | where: "slug", slug | first %}
+        {% if r %}{% include card.html article=r %}{% endif %}
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+</article>

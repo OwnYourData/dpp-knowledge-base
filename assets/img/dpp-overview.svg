@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 480" width="960" height="480" role="img" aria-labelledby="t d">
+  <title id="t">From product to passport</title>
+  <desc id="d">A product carries a data carrier such as a QR code. Scanning it yields the unique product identifier, a web link. Resolving the link returns the digital product passport. The EU registry stores identifiers and who provides the passport, not its content. The economic operator or a DPP service provider keeps the passport available.</desc>
+  <style>
+    .bg { fill: #ffffff; }
+    .box { fill: #ffffff; stroke: #c9d0d4; stroke-width: 1.5; }
+    .box-accent { fill: #e3f2ec; stroke: #0b6e4f; stroke-width: 1.5; }
+    .box-soft { fill: #f7f7f5; stroke: #c9d0d4; stroke-width: 1.5; stroke-dasharray: 6 5; }
+    .ink { fill: #1d2327; }
+    .muted { fill: #5b6770; }
+    .accent { fill: #0b6e4f; }
+    .line { stroke: #0b6e4f; stroke-width: 2.5; fill: none; }
+    .dash { stroke: #8a959c; stroke-width: 1.8; fill: none; stroke-dasharray: 5 5; }
+    .sep { stroke: #c9d0d4; stroke-width: 1; }
+    .qr { fill: #1d2327; }
+    .lamp { fill: #fbf0d9; stroke: #8a5a00; stroke-width: 2; }
+    .lampbase { fill: #c9d0d4; stroke: #5b6770; stroke-width: 1.5; }
+    text { font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; }
+    .h { font-size: 17px; font-weight: 600; }
+    .s { font-size: 14px; }
+    .m { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 13px; }
+    .lbl { font-size: 14px; font-weight: 600; }
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #1b1f22; }
+      .box { fill: #1b1f22; stroke: #3a4247; }
+      .box-accent { fill: #173229; stroke: #4cc293; }
+      .box-soft { fill: #121517; stroke: #3a4247; }
+      .ink { fill: #e8ebed; }
+      .muted { fill: #9aa5ad; }
+      .accent { fill: #4cc293; }
+      .line { stroke: #4cc293; }
+      .dash { stroke: #6b767d; }
+      .sep { stroke: #3a4247; }
+      .qr { fill: #e8ebed; }
+      .lamp { fill: #33291a; stroke: #e6b85c; }
+      .lampbase { fill: #3a4247; stroke: #9aa5ad; }
+    }
+  </style>
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" class="accent"/>
+    </marker>
+  </defs>
+  <rect class="bg" x="0" y="0" width="960" height="480" rx="0"/>
+
+  <!-- product -->
+  <rect class="box" x="20" y="40" width="240" height="250" rx="14"/>
+  <text class="h ink" x="40" y="72">Product</text>
+  <circle class="lamp" cx="95" cy="150" r="38"/>
+  <rect class="lampbase" x="78" y="186" width="34" height="34" rx="4"/>
+  <g transform="translate(160,120)">
+    <rect class="box" x="-6" y="-6" width="82" height="82" rx="6"/>
+    <rect class="qr" x="0" y="0" width="22" height="22"/><rect class="bg" x="5" y="5" width="12" height="12"/><rect class="qr" x="8" y="8" width="6" height="6"/>
+    <rect class="qr" x="48" y="0" width="22" height="22"/><rect class="bg" x="53" y="5" width="12" height="12"/><rect class="qr" x="56" y="8" width="6" height="6"/>
+    <rect class="qr" x="0" y="48" width="22" height="22"/><rect class="bg" x="5" y="53" width="12" height="12"/><rect class="qr" x="8" y="56" width="6" height="6"/>
+    <rect class="qr" x="28" y="4" width="6" height="6"/><rect class="qr" x="36" y="12" width="6" height="6"/><rect class="qr" x="28" y="28" width="6" height="6"/>
+    <rect class="qr" x="40" y="32" width="6" height="6"/><rect class="qr" x="52" y="30" width="6" height="6"/><rect class="qr" x="62" y="40" width="6" height="6"/>
+    <rect class="qr" x="30" y="44" width="6" height="6"/><rect class="qr" x="44" y="52" width="6" height="6"/><rect class="qr" x="56" y="60" width="6" height="6"/>
+    <rect class="qr" x="32" y="62" width="6" height="6"/><rect class="qr" x="10" y="32" width="6" height="6"/><rect class="qr" x="64" y="52" width="6" height="6"/>
+  </g>
+  <text class="s muted" x="40" y="252">Data carrier on the product:</text>
+  <text class="s muted" x="40" y="272">QR code, NFC or RFID</text>
+
+  <!-- arrow scan -->
+  <line class="line" x1="262" y1="165" x2="326" y2="165" marker-end="url(#arr)"/>
+  <text class="lbl accent" x="272" y="153">scan</text>
+
+  <!-- identifier -->
+  <rect class="box-accent" x="330" y="105" width="270" height="120" rx="14"/>
+  <text class="h ink" x="350" y="137">Unique product identifier</text>
+  <text class="m ink" x="350" y="168">https://id.example.eu/01/</text>
+  <text class="m ink" x="350" y="186">09520123456788/21/000001</text>
+  <text class="s muted" x="350" y="211">One string – and a web link</text>
+
+  <!-- arrow resolve -->
+  <line class="line" x1="602" y1="165" x2="666" y2="165" marker-end="url(#arr)"/>
+  <text class="lbl accent" x="606" y="153">resolve</text>
+
+  <!-- passport -->
+  <rect class="box" x="670" y="20" width="270" height="290" rx="14"/>
+  <text class="h ink" x="690" y="52">Digital Product Passport</text>
+  <text class="s muted" x="690" y="80">Header</text>
+  <text class="s ink" x="690" y="102">• passport identifier</text>
+  <text class="s ink" x="690" y="122">• product identifier</text>
+  <text class="s ink" x="690" y="142">• model, batch or item</text>
+  <text class="s ink" x="690" y="162">• status · economic operator</text>
+  <line class="sep" x1="690" y1="178" x2="920" y2="178"/>
+  <text class="s muted" x="690" y="200">Data elements (per product group)</text>
+  <text class="s ink" x="690" y="222">• materials, substances</text>
+  <text class="s ink" x="690" y="242">• carbon footprint</text>
+  <text class="s ink" x="690" y="262">• repair and recycling information</text>
+  <text class="s muted" x="690" y="292">read through an open API</text>
+
+  <!-- readers -->
+  <rect class="box-soft" x="20" y="340" width="240" height="120" rx="14"/>
+  <text class="h ink" x="40" y="372">Who scans</text>
+  <text class="s muted" x="40" y="398">consumers, repairers,</text>
+  <text class="s muted" x="40" y="418">recyclers, authorities</text>
+  <text class="s muted" x="40" y="438">– no account for the public part</text>
+  <line class="dash" x1="140" y1="292" x2="140" y2="338"/>
+
+  <!-- registry -->
+  <rect class="box-soft" x="330" y="340" width="270" height="120" rx="14"/>
+  <text class="h ink" x="350" y="372">EU DPP registry</text>
+  <text class="s muted" x="350" y="398">stores identifiers and who</text>
+  <text class="s muted" x="350" y="418">provides the passport –</text>
+  <text class="s muted" x="350" y="438">not the passport content</text>
+  <line class="dash" x1="465" y1="227" x2="465" y2="338"/>
+
+  <!-- holder -->
+  <rect class="box-soft" x="670" y="340" width="270" height="120" rx="14"/>
+  <text class="h ink" x="690" y="372">Who keeps it available</text>
+  <text class="s muted" x="690" y="398">the economic operator, or a</text>
+  <text class="s muted" x="690" y="418">DPP service provider on its</text>
+  <text class="s muted" x="690" y="438">behalf, plus a back-up copy</text>
+  <line class="dash" x1="805" y1="312" x2="805" y2="338"/>
+</svg>

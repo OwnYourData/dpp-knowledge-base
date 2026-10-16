@@ -1,0 +1,54 @@
+title: DPP Knowledge Base
+description: >-
+  Self-contained articles on Digital Product Passports: what the EU requires,
+  how the open standards fit together, and how OwnYourData's free tools put it
+  into practice.
+url: "https://dpp-service.ownyourdata.eu"
+baseurl: "/kb"
+lang: en
+
+author:
+  name: OwnYourData
+  url: "https://www.ownyourdata.eu/en/"
+
+publisher: OwnYourData
+
+seo:
+  type: Organization
+  name: OwnYourData
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+  syntax_highlighter_opts:
+    disable: true
+
+collections:
+  articles:
+    output: true
+    permalink: /:name/
+
+defaults:
+  - scope:
+      path: ""
+      type: articles
+    values:
+      layout: article
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - Dockerfile
+  - nginx.conf
+  - k8s
+  - README.md
+  - CONTRIBUTING.md
+  - LICENSE
+  - vendor
+  - .bundle
+  - script

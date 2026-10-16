@@ -1,0 +1,45 @@
+# DPP Knowledge Base
+
+Self-contained articles on Digital Product Passports by OwnYourData, published at
+<https://dpp-service.ownyourdata.eu/kb/>.
+
+Each article explains one topic – a regulation, a concept, one of our tools –
+completely enough to be read on its own, with at least one picture, and says when
+it was last reviewed.
+
+## Preview locally
+
+Ruby 3.3 and Bundler are all it takes:
+
+```sh
+bundle install
+bundle exec jekyll serve --livereload
+```
+
+Then open <http://localhost:4000/kb/>. Search only works in a full build, because
+the index is created after Jekyll has run:
+
+```sh
+bundle exec jekyll build
+npx -y pagefind@1.3.0 --site _site
+```
+
+## Build the container
+
+```sh
+docker build -t dpp-knowledge-base .
+docker run --rm -p 8080:8080 dpp-knowledge-base
+```
+
+The site is then at <http://localhost:8080/kb/>. The image builds the site with
+Jekyll, indexes it with Pagefind and serves it with nginx under `/kb/`.
+
+## Write an article
+
+See [CONTRIBUTING.md](CONTRIBUTING.md): structure, front matter, pictures, and
+what does not belong in an article.
+
+## Licence
+
+Articles and pictures: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+Code (layouts, styles, build files): Apache 2.0, see [LICENSE](LICENSE).

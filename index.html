@@ -1,0 +1,26 @@
+---
+layout: default
+title: DPP Knowledge Base
+search: true
+---
+<section class="hero">
+  <span class="badge">Knowledge Base</span>
+  <h1 style="margin-top:14px">Digital Product Passports, explained</h1>
+  <p class="lead">
+    Self-contained articles on what the EU requires, how the open standards fit
+    together, and how OwnYourData's free tools put it into practice. Each article
+    stands on its own and says when it was last reviewed.
+  </p>
+  <div id="search"></div>
+</section>
+
+{% assign sections = "Basics,Concepts,Tools" | split: "," %}
+{% for s in sections %}
+  {% assign list = site.articles | where: "section", s | sort: "order" %}
+  {% if list.size > 0 %}
+  <h2 class="section-title">{{ s }}</h2>
+  <div class="grid">
+    {% for a in list %}{% include card.html article=a %}{% endfor %}
+  </div>
+  {% endif %}
+{% endfor %}

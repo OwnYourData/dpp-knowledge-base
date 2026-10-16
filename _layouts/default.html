@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang }}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+{% seo %}
+<link rel="stylesheet" href="{{ '/assets/css/kb.css' | relative_url }}">
+{% if page.search %}<link rel="stylesheet" href="{{ '/pagefind/pagefind-ui.css' | relative_url }}">{% endif %}
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="{{ '/' | relative_url }}">DPP Knowledge Base <span>· OwnYourData</span></a>
+    <nav>
+      <a href="{{ '/' | relative_url }}"{% if page.url == '/' %} aria-current="page"{% endif %}>Articles</a>
+      <a href="/">DPP Service</a>
+      <a href="/api-docs/index.html">API</a>
+      <a href="https://github.com/OwnYourData/dpp-knowledge-base">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+{{ content }}
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div>Written and operated by <a href="https://www.ownyourdata.eu/en/">OwnYourData</a> · Content under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div>
+    <div>
+      <a href="https://www.ownyourdata.eu/en/imprint/">Imprint</a>
+      <a href="https://www.ownyourdata.eu/en/privacy-policy/">Privacy</a>
+    </div>
+  </div>
+</footer>
+
+{% if page.search %}
+<script src="{{ '/pagefind/pagefind-ui.js' | relative_url }}"></script>
+<script>
+  if (window.PagefindUI) {
+    new PagefindUI({ element: "#search", showSubResults: true, showImages: false, resetStyles: false });
+  }
+</script>
+{% endif %}
+</body>
+</html>

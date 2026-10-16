@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 500" width="960" height="500" role="img" aria-labelledby="t d">
+  <title id="t">Who sees which part of a battery passport</title>
+  <desc id="d">Three access classes: public, legitimate interest and authority. Anyone without an account sees the public part. A repair shop or recycler with an access grant also sees the legitimate-interest part. Market surveillance and customs authorities, notified bodies and the Commission see the whole passport, and so does the economic operator that owns it.</desc>
+  <style>
+    .bg { fill: #ffffff; }
+    .ink { fill: #1d2327; }
+    .muted { fill: #5b6770; }
+    .accent { fill: #0b6e4f; }
+    .head { fill: #f7f7f5; stroke: #c9d0d4; stroke-width: 1.2; }
+    .c0 { fill: #e3f2ec; }
+    .c1 { fill: #b9e0cf; }
+    .c2 { fill: #7cc4a6; }
+    .bar { fill: #0b6e4f; }
+    .empty { fill: none; stroke: #c9d0d4; stroke-width: 1.4; stroke-dasharray: 5 5; }
+    .row { stroke: #e2e5e8; stroke-width: 1; }
+    .on { fill: #ffffff; }
+    text { font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; }
+    .h { font-size: 17px; font-weight: 700; }
+    .lv { font-size: 12px; font-weight: 600; letter-spacing: .05em; }
+    .s { font-size: 14px; }
+    .r { font-size: 15px; font-weight: 600; }
+    .b { font-size: 14px; font-weight: 600; }
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #1b1f22; }
+      .ink { fill: #e8ebed; }
+      .muted { fill: #9aa5ad; }
+      .accent { fill: #4cc293; }
+      .head { fill: #121517; stroke: #3a4247; }
+      .c0 { fill: #173229; }
+      .c1 { fill: #1f4636; }
+      .c2 { fill: #2a6049; }
+      .bar { fill: #4cc293; }
+      .empty { stroke: #3a4247; }
+      .row { stroke: #2c3236; }
+      .on { fill: #121517; }
+    }
+  </style>
+  <rect class="bg" x="0" y="0" width="960" height="500"/>
+
+  <!-- column heads -->
+  <rect class="c0" x="320" y="16" width="200" height="140" rx="12"/>
+  <text class="lv accent" x="336" y="40">LEVEL 0</text>
+  <text class="h ink" x="336" y="63">Public</text>
+  <text class="s muted" x="336" y="88">identification, category,</text>
+  <text class="s muted" x="336" y="107">carbon footprint,</text>
+  <text class="s muted" x="336" y="126">hazardous substances,</text>
+  <text class="s muted" x="336" y="145">declaration of conformity</text>
+
+  <rect class="c1" x="530" y="16" width="200" height="140" rx="12"/>
+  <text class="lv accent" x="546" y="40">LEVEL 1</text>
+  <text class="h ink" x="546" y="63">Legitimate interest</text>
+  <text class="s muted" x="546" y="88">detailed composition,</text>
+  <text class="s muted" x="546" y="107">dismantling information,</text>
+  <text class="s muted" x="546" y="126">performance data,</text>
+  <text class="s muted" x="546" y="145">status</text>
+
+  <rect class="c2" x="740" y="16" width="200" height="140" rx="12"/>
+  <text class="lv accent" x="756" y="40">LEVEL 2</text>
+  <text class="h ink" x="756" y="63">Authority</text>
+  <text class="s muted" x="756" y="88">results of</text>
+  <text class="s muted" x="756" y="107">test reports</text>
+
+  <text class="lv muted" x="20" y="145">READER</text>
+
+  <!-- row 1: anyone -->
+  <line class="row" x1="20" y1="172" x2="940" y2="172"/>
+  <text class="r ink" x="20" y="202">Anyone</text>
+  <text class="s muted" x="20" y="222">no account, no token</text>
+  <rect class="bar" x="320" y="186" width="200" height="44" rx="10"/>
+  <text class="b on" x="420" y="213" text-anchor="middle">sees</text>
+  <rect class="empty" x="530" y="186" width="200" height="44" rx="10"/>
+  <rect class="empty" x="740" y="186" width="200" height="44" rx="10"/>
+
+  <!-- row 2: legitimate interest -->
+  <line class="row" x1="20" y1="248" x2="940" y2="248"/>
+  <text class="r ink" x="20" y="278">Repair shop, recycler</text>
+  <text class="s muted" x="20" y="298">with an access grant</text>
+  <rect class="bar" x="320" y="262" width="410" height="44" rx="10"/>
+  <text class="b on" x="525" y="289" text-anchor="middle">sees</text>
+  <rect class="empty" x="740" y="262" width="200" height="44" rx="10"/>
+
+  <!-- row 3: authority -->
+  <line class="row" x1="20" y1="324" x2="940" y2="324"/>
+  <text class="r ink" x="20" y="354">Authorities</text>
+  <text class="s muted" x="20" y="374">market surveillance, customs,</text>
+  <text class="s muted" x="20" y="392">notified bodies, Commission</text>
+  <rect class="bar" x="320" y="342" width="620" height="44" rx="10"/>
+  <text class="b on" x="630" y="369" text-anchor="middle">sees the whole passport</text>
+
+  <!-- row 4: owner -->
+  <line class="row" x1="20" y1="408" x2="940" y2="408"/>
+  <text class="r ink" x="20" y="438">Economic operator</text>
+  <text class="s muted" x="20" y="458">that owns the passport</text>
+  <rect class="bar" x="320" y="424" width="620" height="44" rx="10"/>
+  <text class="b on" x="630" y="451" text-anchor="middle">sees the whole passport</text>
+</svg>
