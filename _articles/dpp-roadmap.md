@@ -80,7 +80,7 @@ The order comes from the Commission's **Working Plan 2025–2030**, adopted on 1
 
 From 18 February 2027, every electric-vehicle battery, every battery for light means of transport such as e-bikes and e-scooters, and every industrial battery above 2 kWh placed on the EU market needs a passport. The obligation lies with whoever places the finished battery on the market. Simplification packages adopted or proposed so far leave this date unchanged.
 
-What is still missing are the Commission's rules on who counts as a person with a **legitimate interest** and what they may access. The regulation required them by 18 August 2026; that deadline passed. The public part and the part for authorities can already be built against Annex XIII of the regulation. How the access groups work in practice is described in [Role-based access to passport data]({{ '/role-based-access/' | relative_url }}).
+What is still missing are the Commission's rules on who counts as a person with a **legitimate interest** and what they may access. The regulation required them by 18 August 2026; that deadline passed. The public part and the part for authorities can already be built against Annex XIII of the regulation. How the access groups work in practice is described in [Role-based access to passport data]({{ '/role-based-access/' | relative_url }}). What a battery passport has to contain, and what operators should do now, is the subject of [Battery passport: what you need by 18 February 2027]({{ '/battery-passport/' | relative_url }}).
 
 ## ESPR product groups: one after another
 

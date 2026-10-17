@@ -172,3 +172,8 @@ figure.fig.hero-fig { margin-top: 0; }
   .prose h2 { font-size: 21px; }
   .prose table { display: block; overflow-x: auto; }
 }
+
+/* glossary: definition lists */
+.prose dl { margin: 0 0 20px; }
+.prose dt { font-weight: 700; margin: 18px 0 4px; }
+.prose dd { margin: 0 0 0 0; padding-left: 14px; border-left: 3px solid var(--line); }
