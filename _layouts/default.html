@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
+<link rel="icon" href="{{ '/assets/img/oyd-mark.svg' | relative_url }}" type="image/svg+xml">
 <script>try{var t=localStorage.getItem("kb-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 {% seo %}
 <link rel="stylesheet" href="{{ '/assets/css/kb.css' | relative_url }}?v={{ site.time | date: '%s' }}">
@@ -13,7 +14,7 @@
 
 <header class="site">
   <div class="wrap">
-    <a class="brand" href="{{ '/' | relative_url }}">DPP Knowledge Base <span>· OwnYourData</span></a>
+    <a class="brand" href="{{ '/' | relative_url }}"><img class="mark" src="{{ '/assets/img/oyd-mark.svg' | relative_url }}" alt="" width="15" height="28">DPP Knowledge Base <span>· OwnYourData</span></a>
     <nav>
       <a href="{{ '/' | relative_url }}"{% if page.url == '/' %} aria-current="page"{% endif %}>Articles</a>
       <a href="/">DPP Service</a>

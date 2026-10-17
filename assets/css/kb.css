@@ -56,8 +56,9 @@ img { max-width: 100%; height: auto; }
 /* header and footer: same as the DPP Service start page */
 header.site { padding: 20px 0; border-bottom: 1px solid var(--line); }
 header.site .wrap { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
-.brand { font-weight: 600; letter-spacing: .01em; color: var(--text); text-decoration: none; }
-.brand span { color: var(--muted); font-weight: 400; }
+.brand { display: inline-flex; align-items: center; gap: 9px; font-weight: 600; letter-spacing: .01em; color: var(--text); text-decoration: none; white-space: nowrap; }
+.brand .mark { width: 15px; height: auto; display: block; }
+.brand span { color: var(--muted); font-weight: 400; margin-left: -5px; }
 header.site nav a { color: var(--muted); text-decoration: none; margin-left: 18px; font-size: 15px; }
 header.site nav a:hover, header.site nav a[aria-current] { color: var(--text); }
 .theme-toggle {
