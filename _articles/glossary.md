@@ -51,7 +51,7 @@ Annex ZA
 ## B
 
 Back-up copy
-: A copy of a passport kept by a second, independent DPP service provider, so that the passport survives if the main one fails. The ESPR asks for it; EN 18221 describes how it works.
+: A copy of a passport kept by a second, independent DPP service provider, so that the passport survives if the main one fails. The ESPR asks for it; EN 18221 describes how it works. See [Who keeps the passport?]({{ '/custodians-and-back-up/' | relative_url }}).
 
 Battery passport
 : The passport required by the Battery Regulation (EU) 2023/1542 from 18 February 2027 for electric-vehicle batteries, batteries for light means of transport and industrial batteries above 2 kWh. See [Battery passport]({{ '/battery-passport/' | relative_url }}).
@@ -71,7 +71,7 @@ Criteria catalogue
 : The open repository *dpp-criteria*, which turns legal and standard requirements into checkable criteria. See [The DPP criteria catalogue]({{ '/dpp-criteria/' | relative_url }}).
 
 Custodian
-: The party that keeps a passport and serves its public part on the link on the product, under a mandate from the economic operator – a DPP service provider, or the operator itself.
+: The party that keeps a passport and serves its public part on the link on the product, under a mandate from the economic operator – a DPP service provider, or the operator itself. See [Who keeps the passport?]({{ '/custodians-and-back-up/' | relative_url }}).
 
 ## D
 
@@ -119,7 +119,7 @@ Granularity
 : Whether a passport describes a product **model**, a **batch** or a single **item**. The delegated act for a product group decides which.
 
 GS1 Digital Link
-: A web address that carries GS1 keys, such as the product code after `/01/` and the serial number after `/21/`. Often used as the unique product identifier.
+: A web address that carries GS1 keys, such as the product code after `/01/` and the serial number after `/21/`. Often used as the unique product identifier. See [QR code, GS1 Digital Link and unique identifiers]({{ '/product-identifiers/' | relative_url }}).
 
 ## H
 
@@ -163,7 +163,7 @@ SOyA
 ## U
 
 Unique product identifier (UPI)
-: A string that identifies a product and at the same time works as a web link to its passport. Covered by EN 18219.
+: A string that identifies a product and at the same time works as a web link to its passport. Covered by EN 18219. See [QR code, GS1 Digital Link and unique identifiers]({{ '/product-identifiers/' | relative_url }}).
 
 ## W
 
