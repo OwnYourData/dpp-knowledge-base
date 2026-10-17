@@ -65,6 +65,14 @@ docker compose up -d
 
 Open `http://localhost:3000` and choose a passphrase. It encrypts the one file in which the DPP Manager keeps everything. Nobody can reset it – write it down. The [installation guide](https://github.com/OwnYourData/dpp-manager-public/blob/main/docs/Install.md) also covers the route without a terminal.
 
+**Keep it up to date.** In the same folder, one line fetches the latest version and recreates the container. Your data file stays where it is, in the folder `data`:
+
+```sh
+docker compose pull && docker compose up -d --force-recreate
+```
+
+Use version 0.1.7 or later. Up to version 0.1.6, the DPP Manager wrote the passphrase in plain text into the container's log; recreating the container removes that old log. If you have passed a log of the container on to anyone, change the passphrase under *Data file* – see the [changelog](https://github.com/OwnYourData/dpp-manager-public/blob/main/CHANGELOG.md#017).
+
 ## 2. Choose the DPP service
 
 The setup starts with the service your passports are written to. Enter its address – here `https://dpp-service.ownyourdata.eu` – and press **Check and continue**.
