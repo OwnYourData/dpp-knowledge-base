@@ -39,6 +39,10 @@ Jekyll, indexes it with Pagefind and serves it with nginx under `/kb/`.
 See [CONTRIBUTING.md](CONTRIBUTING.md): structure, front matter, pictures, and
 what does not belong in an article.
 
+## Funding
+
+The DPP Knowledge Base is part of the project [PACE-DPP](https://dpp-austria.at/) – Promoting and Accelerating a Digital Product Passport based Data-Service Ecosystem. This Lighthouse Project has been made possible by financial contributions from the Austrian Federal Ministry of Innovation, Mobility and Infrastructure ([BMIMI](https://www.bmimi.gv.at/en.html), formerly BMK), supported by the Austrian Research Promotion Agency (FFG) under grant number [917177](https://projekte.ffg.at/projekt/5128301), as well as from the German Federal Ministry of Research, Technology and Space (BMFTR, formerly BMWK), supported by the German Research Promotion Agency (DLR-PT).
+
 ## Licence
 
 Articles and pictures: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
