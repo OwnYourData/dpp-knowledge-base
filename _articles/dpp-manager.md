@@ -66,7 +66,7 @@ Then open `http://localhost:3000`. On the first start you choose a passphrase.
 
 {% include figure.html src="/assets/img/screens/dpp-manager-first-start.png" alt="Screenshot of the DPP Manager's first start: the OwnYourData logo, a warning that the passphrase encrypts everything and cannot be recovered, two passphrase fields and the button 'Create the data file'." caption="The first start. The passphrase encrypts everything – nobody can reset it, which is also why nobody else can read your data." screenshot=true maxwidth="420" width="600" height="850" %}
 
-A short setup follows: which DPP service to write to, an identity of your own, and where your passports should be kept. Each screen explains itself, in English or German.
+A short setup follows: which DPP service to write to, an identity of your own, and where your passports should be kept. Each screen explains itself, in English or German. [Getting started: your first passport]({{ '/getting-started/' | relative_url }}) walks through all of it with screenshots, up to a published passport.
 
 ## Product types instead of blank forms
 
