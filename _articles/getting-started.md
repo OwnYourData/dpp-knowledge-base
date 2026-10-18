@@ -4,7 +4,7 @@ description: From an empty computer to a published Digital Product Passport that
 section: Tools
 order: 1.5
 audience: economic operators trying the tools for the first time
-last_reviewed: 2026-10-17
+last_reviewed: 2026-10-18
 image: /assets/img/getting-started-steps.svg
 image_alt: "Eight steps. Set up once: 1 Start – install the container and choose a passphrase, on your computer. 2 DPP service – enter its address, it tells you the rest. 3 Identity – a key pair of your own, write down the keys. 4 Custodian – an agreement at a data intermediary gives you a pod and a collection. Per passport: 5 Describe – fill in the form of the product type. 6 Identifier – the passport gets an identifier of its own. 7 Submit – the DPP Service stores it, the custodian keeps it. 8 Check – open the link and run the DPP Linter, in any browser."
 image_caption: "Four steps to set up, four steps for every passport."
@@ -71,7 +71,7 @@ Open `http://localhost:3000` and choose a passphrase. It encrypts the one file i
 docker compose pull && docker compose up -d --force-recreate
 ```
 
-Use version 0.1.7 or later. Up to version 0.1.6, the DPP Manager wrote the passphrase in plain text into the container's log; recreating the container removes that old log. If you have passed a log of the container on to anyone, change the passphrase under *Data file* – see the [changelog](https://github.com/OwnYourData/dpp-manager-public/blob/main/CHANGELOG.md#017).
+Use version 0.1.8 or later; the version is shown at the bottom of every page. Up to version 0.1.6, the DPP Manager wrote the passphrase in plain text into the container's log; recreating the container removes that old log. If you have passed a log of the container on to anyone, change the passphrase under *Data file* – see the [changelog](https://github.com/OwnYourData/dpp-manager-public/blob/main/CHANGELOG.md#017). Since 0.1.8, a form is no longer lost when the data file locks itself (see step 5).
 
 ## 2. Choose the DPP service
 
@@ -87,7 +87,7 @@ Next comes your identity as an economic operator: a key pair, created on your co
 
 {% include figure.html src="/assets/img/screens/getting-started-identity.png" alt="Screenshot of setup step 2, 'Your identity': an explanation that the private half of the key pair stays on this machine, a warning 'This is the one thing that cannot be replaced', and the field 'Name for this identity' filled with Example Lighting GmbH." caption="The private key stays on your computer; only the public half is published, so that others can check your signatures." screenshot=true width="970" height="840" %}
 
-**Create an identity** publishes the public half as a `did:oyd` identifier. The next screen shows two keys – a document key and a revocation key – **once**. Press **Write the key file** and keep a copy somewhere safe: whoever holds these keys speaks for your company, and without them your passports can no longer be changed.
+**Create an identity** publishes the public half as a `did:oyd` identifier. The next screen shows two keys – a document key and a revocation key. Press **Write the key file**, keep a copy somewhere safe and confirm that you have stored them; after that, they are not shown again: whoever holds these keys speaks for your company, and without them your passports can no longer be changed.
 
 ## 4. Get a custodian
 
@@ -118,17 +118,25 @@ Below follows the form of the product type, in tabs. Required fields are marked;
 
 {% include figure.html src="/assets/img/screens/getting-started-form.png" alt="Screenshot of the LED lamp form with the tabs Product, Light and power, Lifetime, Conformity and substances, and Environment. The Product tab shows manufacturer Example Lighting GmbH, product designation LED bulb E27 806 lm, model EL-E27-806, serial number KB-0001, date of manufacture 2026-09-15 and country of origin AT. Above: '21 fields filled in' and the button 'Load file'." caption="The form comes from the product type. If the data already exists elsewhere, Load file reads it from a JSON file – in the browser, without uploading it." screenshot=true width="960" height="485" %}
 
+**Locked in between?** When the DPP Manager sits unused for longer than the time set under *Settings* – 15 minutes unless you change it – the data file locks itself. What you send after that is not carried out, and the unlock screen says so. Once you have entered your passphrase, you are back on the form with what you had typed, except passphrases, keys and files; press **Save** again. The event log records the lock together with the action that was not carried out.
+
+{% include figure.html src="/assets/img/screens/getting-started-lock.png" alt="Screenshot of the DPP Manager unlock screen with the message 'Locked because the application sat unused. What you sent was not carried out.' and below it: 'What you sent last was not carried out. Once the file is open, you are taken back to that page, with what you had typed — except passphrases and keys.'" caption="After an automatic lock, nothing is lost silently: the DPP Manager says what was not carried out and leads back to the form." screenshot=true width="472" height="392" maxwidth="472" %}
+
 ## 6. Create the passport identifier
 
 Each passport gets an identifier of its own, separate from your identity. It records where the passport can be read – so the product identifier and the custodian have to be right before you press the button.
 
-{% include figure.html src="/assets/img/screens/getting-started-identifier.png" alt="Screenshot of the section 'The passport identifier' with an explanation and the warning 'This step cannot be undone': a document is published to the registry saying the passport can be read at https://dpp-staging.go-data.at, and the product identifier and that address are fixed from then on." caption="The one step that cannot be undone. The DPP Manager says so before, not after." screenshot=true width="960" height="400" %}
+{% include figure.html src="/assets/img/screens/getting-started-identifier.png" alt="Screenshot of the warning 'This step cannot be undone': a document is published to the registry saying the passport can be read at https://dpp-staging.go-data.at; from then on the product identifier and the passport identifier are fixed, and where it points can be changed later only by handing the passport to another custodian. In front of it, the DPP Manager's own dialog 'Please confirm': 'Create the identifier now? It will point at https://dpp-staging.go-data.at, and the product identifier cannot be changed afterwards.' with the buttons Cancel and 'Yes, go ahead'." caption="The one step that cannot be undone. The DPP Manager says so before, and asks once more in a dialog of its own." screenshot=true width="956" height="288" %}
 
-After **Create the passport identifier**, the passport's two keys are shown once, just like your identity's. Write the key file again: without these keys the passport can still be read, but never moved or retired.
+**Create the passport identifier** opens a confirmation in the DPP Manager itself – **Yes, go ahead** or **Cancel**; Escape cancels, too. From then on, the product identifier and the passport identifier are fixed. Where the identifier points can still change: handing the passport to another custodian moves it, with the passport's keys, and both identifiers stay the same.
+
+The next screen shows the passport's two keys, just like your identity's. Write the key file again and confirm that you have stored them; after that, they are not shown again. Without these keys the passport can still be read, but never handed to another custodian or retired.
 
 ## 7. Submit
 
-**Submit to the DPP Service** assembles the passport in the data model of EN 18223, signs it with your identity and sends it. The service checks the passport identifier before it stores anything.
+**Submit to the DPP Service** assembles the passport in the data model of EN 18223, signs it with your identity and sends it, after one more confirmation. The service checks the passport identifier before it stores anything: it has to point at the host where the passport will be read – the custodian's, when one holds it.
+
+All times in the DPP Manager are shown in UTC and labelled so – the same time base as the event log, the DPP Service and the custodian.
 
 {% include figure.html src="/assets/img/screens/getting-started-submitted.png" alt="Screenshot of the passport page after submission: the passport identifier did:oyd:zQmVWGg…, where it points, and the section Submitting with the time, the service https://dpp-service.ownyourdata.eu and the note 'The service holds this version'." caption="Submitted. The DPP Manager keeps what the service accepted, so you can look it up even when the service is not reachable." screenshot=true width="960" height="390" %}
 
