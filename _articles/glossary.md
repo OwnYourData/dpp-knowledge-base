@@ -4,7 +4,7 @@ description: The terms that come up again and again around Digital Product Passp
 section: Basics
 order: 5
 audience: everyone working with Digital Product Passports
-last_reviewed: 2026-10-17
+last_reviewed: 2026-10-19
 image: /assets/img/glossary-map.svg
 image_alt: "A product, as model, batch or item, carries a data carrier such as a QR code. It holds the unique product identifier, a web link, which leads to the passport with its DPP identifier, header and data elements, kept by a custodian. The economic operator writes through the lifecycle API of a DPP service. The EU DPP registry records the identifiers and where each passport is kept. Readers get the public part, and more according to access class and access grant."
 image_caption: "How the main terms fit together."
@@ -65,7 +65,7 @@ Content binding
 : Recording a hash of a passport's content in the signed log of its DPP identifier, so that anyone can check that what they receive is what the operator published. See [Public availability]({{ '/public-availability/' | relative_url }}).
 
 Controlled part
-: The part of a passport with every attribute that is not public. It is handed out only to readers whose access class allows it. Its counterpart is the *public part*.
+: The part of a passport with every attribute that is not public. It is handed out only to readers whose access class allows it. If it cannot be read at the custodian, the DPP Service returns the public part and says why in the response header `X-DPP-Controlled-Part`. Its counterpart is the *public part*.
 
 Criteria catalogue
 : The open repository *dpp-criteria*, which turns legal and standard requirements into checkable criteria. See [The DPP criteria catalogue]({{ '/dpp-criteria/' | relative_url }}).

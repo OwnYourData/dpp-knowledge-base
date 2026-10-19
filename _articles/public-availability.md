@@ -4,7 +4,7 @@ description: How anyone gets from the code on a product to its passport – with
 section: Concepts
 order: 1
 audience: economic operators, DPP service providers, developers
-last_reviewed: 2026-10-16
+last_reviewed: 2026-10-19
 image: /assets/img/public-access-paths.svg
 image_alt: "Diagram: three ways to the same passport – scanning the product, asking a DPP service, or resolving the passport identifier – all lead to the custodian, which returns a readable page to a browser and JSON to software. The passport's DID document carries a hash of the JSON for checking."
 image_caption: "Three ways in, one passport. Which form comes back depends only on what the client asks for."
@@ -119,7 +119,7 @@ Three ways to do the check:
 
 ## Public means the public part
 
-What is public is decided per attribute. A passport whose operator has marked some attributes for readers with a legitimate interest or for authorities is served in two parts: the public part on the link on the product, the rest only through the DPP Service to readers who hold a grant. How that works is described in [Role-based access to passport data]({{ '/role-based-access/' | relative_url }}).
+What is public is decided per attribute. A passport whose operator has marked some attributes for readers with a legitimate interest or for authorities is served in two parts: the public part on the link on the product, the rest only through the DPP Service to readers who hold a grant. If that rest cannot be read at the custodian, such a reader still gets the public part, with a response header that says why. How that works is described in [Role-based access to passport data]({{ '/role-based-access/' | relative_url }}).
 
 ## What is still open
 

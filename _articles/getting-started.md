@@ -4,7 +4,7 @@ description: From an empty computer to a published Digital Product Passport that
 section: Tools
 order: 1.5
 audience: economic operators trying the tools for the first time
-last_reviewed: 2026-10-18
+last_reviewed: 2026-10-19
 image: /assets/img/getting-started-steps.svg
 image_alt: "Eight steps. Set up once: 1 Start – install the container and choose a passphrase, on your computer. 2 DPP service – enter its address, it tells you the rest. 3 Identity – a key pair of your own, write down the keys. 4 Custodian – an agreement at a data intermediary gives you a pod and a collection. Per passport: 5 Describe – fill in the form of the product type. 6 Identifier – the passport gets an identifier of its own. 7 Submit – the DPP Service stores it, the custodian keeps it. 8 Check – open the link and run the DPP Linter, in any browser."
 image_caption: "Four steps to set up, four steps for every passport."
@@ -55,11 +55,12 @@ The custodian is optional. Without one, the DPP Service keeps the passport itsel
 
 ## 1. Start the DPP Manager
 
-The DPP Manager runs as a container. With Docker Desktop, Podman Desktop or Rancher Desktop installed, three lines start it:
+The DPP Manager runs as a container. With Docker Desktop, Podman Desktop or Rancher Desktop installed, four lines start it – `docker compose pull` first, so that a computer that still holds an older image starts the current one:
 
 ```sh
 mkdir -p ~/Documents/dpp-manager && cd ~/Documents/dpp-manager
 curl -fsSLO https://raw.githubusercontent.com/OwnYourData/dpp-manager-public/main/docker-compose.yml
+docker compose pull
 docker compose up -d
 ```
 
@@ -71,7 +72,9 @@ Open `http://localhost:3000` and choose a passphrase. It encrypts the one file i
 docker compose pull && docker compose up -d --force-recreate
 ```
 
-Use version 0.1.8 or later; the version is shown at the bottom of every page. Up to version 0.1.6, the DPP Manager wrote the passphrase in plain text into the container's log; recreating the container removes that old log. If you have passed a log of the container on to anyone, change the passphrase under *Data file* – see the [changelog](https://github.com/OwnYourData/dpp-manager-public/blob/main/CHANGELOG.md#017). Since 0.1.8, a form is no longer lost when the data file locks itself (see step 5).
+Use version 0.1.9 or later; the version is shown at the bottom of every page. Up to version 0.1.6, the DPP Manager wrote the passphrase in plain text into the container's log; recreating the container removes that old log. If you have passed a log of the container on to anyone, change the passphrase under *Data file* – see the [changelog](https://github.com/OwnYourData/dpp-manager-public/blob/main/CHANGELOG.md#017). Since 0.1.8, a form is no longer lost when the data file locks itself (see step 5).
+
+**A second DPP Manager** on the same computer goes into a folder of its own, with its own port and container name. Put both into a file `.env` next to `docker-compose.yml`, for example `DPP_MANAGER_PORT=3001` and `DPP_MANAGER_CONTAINER=dpp-manager-2`; the container name can be set this way from version 0.1.9 of `docker-compose.yml`.
 
 ## 2. Choose the DPP service
 
@@ -85,9 +88,9 @@ The DPP Manager only asks the service whether it is there and under which identi
 
 Next comes your identity as an economic operator: a key pair, created on your computer. The name you give it is only for your own overview.
 
-{% include figure.html src="/assets/img/screens/getting-started-identity.png" alt="Screenshot of setup step 2, 'Your identity': an explanation that the private half of the key pair stays on this machine, a warning 'This is the one thing that cannot be replaced', and the field 'Name for this identity' filled with Example Lighting GmbH." caption="The private key stays on your computer; only the public half is published, so that others can check your signatures." screenshot=true width="970" height="840" %}
+{% include figure.html src="/assets/img/screens/getting-started-identity.png" alt="Screenshot of setup step 2, 'Your identity': an explanation that the private half of the key pair stays on this machine and that the keys stay visible until you confirm that they are stored, a warning 'This is the one thing that cannot be replaced', and the field 'Name for this identity' filled with Example Lighting GmbH." caption="The private key stays on your computer; only the public half is published, so that others can check your signatures." screenshot=true width="970" height="840" %}
 
-**Create an identity** publishes the public half as a `did:oyd` identifier. The next screen shows two keys – a document key and a revocation key. Press **Write the key file**, keep a copy somewhere safe and confirm that you have stored them; after that, they are not shown again: whoever holds these keys speaks for your company, and without them your passports can no longer be changed.
+**Create an identity** publishes the public half as a `did:oyd` identifier. The next screen shows two keys – a document key and a revocation key. They stay visible until you confirm that you have stored them, and after that they are not shown again, not even when you open that step once more. Press **Write the key file** and keep a copy somewhere safe: whoever holds these keys speaks for your company, and without them your passports can no longer be changed.
 
 ## 4. Get a custodian
 
@@ -101,22 +104,22 @@ A custodian keeps your passports and serves them at the link on the product. The
 
 Press **Save**, then **Sign**. Under **My Contracts**, the details of the new agreement show the two values the DPP Manager needs: the address of the storage service and the number of your collection. Neither is secret.
 
-{% include figure.html src="/assets/img/screens/getting-started-contract-values.png" alt="Screenshot of the contract details at the intermediary: base address of the storage service https://dpp-staging.go-data.at, storage identifier 198, access for third parties: no access for third parties, and the note to enter these two values in the DPP Manager." caption="The two values from the agreement. This example used the intermediary's test environment, hence 'dpp-staging'." screenshot=true width="1117" height="282" %}
+{% include figure.html src="/assets/img/screens/getting-started-contract-values.png" alt="Screenshot of the contract details at the intermediary: base address of the storage service https://dpp-staging.go-data.at, storage identifier 201, access for third parties: no access for third parties, and the note to enter these two values in the DPP Manager." caption="The two values from the agreement. This example used the intermediary's test environment, hence 'dpp-staging'." screenshot=true width="1100" height="196" %}
 
 Back in the DPP Manager, enter both values in the last setup step. If the address differs from the one shown next to DID FlexCo, choose **A different custodian** and type it in. Then **Save and finish**.
 
-{% include figure.html src="/assets/img/screens/getting-started-custodian.png" alt="Screenshot of setup step 4, 'Where the passport lives': 'A different custodian' selected, the address of the pod https://dpp-staging.go-data.at, the collection 198, and the button 'Save and finish'." caption="Address and collection from the agreement – the setup is complete." screenshot=true width="925" height="455" %}
+{% include figure.html src="/assets/img/screens/getting-started-custodian.png" alt="Screenshot of setup step 4, 'Where the passport lives', section 'Which one?': the preset DID Daten-Intermediär-Dienste FlexCo with https://dpp.go-data.at, and 'A different custodian' selected with the address of the pod https://dpp-staging.go-data.at; below, the collection 201." caption="Address and collection from the agreement – the setup is complete." screenshot=true width="954" height="467" %}
 
 ## 5. Describe the product
 
 Under **Passports**, start a new passport of a product type – here *LED lamp*. The top of the form is the same for every product:
 
-- **Product identifier** – the link printed on the product, usually a GS1 Digital Link. Our example uses `https://dpp-staging.go-data.at/01/09520123000011/21/KB-0001`: GTIN `09520123000011` from GS1's range for examples, serial number `KB-0001`. A real product would carry a link on your own domain, pointed at the custodian.
+- **Product identifier** – the link printed on the product, usually a GS1 Digital Link. Our example uses `https://dpp-staging.go-data.at/01/09520123000028/21/KB-0002`: GTIN `09520123000028` from GS1's range for examples, serial number `KB-0002`. A real product would carry a link on your own domain, pointed at the custodian.
 - **This passport describes** – a model, a batch or one item. For a Digital Link it is read from the path: `/21/` means one item.
 
 Below follows the form of the product type, in tabs. Required fields are marked; a draft is saved even when it is incomplete.
 
-{% include figure.html src="/assets/img/screens/getting-started-form.png" alt="Screenshot of the LED lamp form with the tabs Product, Light and power, Lifetime, Conformity and substances, and Environment. The Product tab shows manufacturer Example Lighting GmbH, product designation LED bulb E27 806 lm, model EL-E27-806, serial number KB-0001, date of manufacture 2026-09-15 and country of origin AT. Above: '21 fields filled in' and the button 'Load file'." caption="The form comes from the product type. If the data already exists elsewhere, Load file reads it from a JSON file – in the browser, without uploading it." screenshot=true width="960" height="485" %}
+{% include figure.html src="/assets/img/screens/getting-started-form.png" alt="Screenshot of the LED lamp form with the tabs Product, Light and power, Lifetime, Conformity and substances, and Environment. The Product tab shows manufacturer Example Lighting GmbH, product designation LED bulb E27 806 lm, model EL-E27-806, serial number KB-0002, date of manufacture 2026-10-01 and country of origin AT. Above: '21 fields filled in' and the button 'Load file'." caption="The form comes from the product type. If the data already exists elsewhere, Load file reads it from a JSON file – in the browser, without uploading it." screenshot=true width="954" height="450" %}
 
 **Locked in between?** When the DPP Manager sits unused for longer than the time set under *Settings* – 15 minutes unless you change it – the data file locks itself. What you send after that is not carried out, and the unlock screen says so. Once you have entered your passphrase, you are back on the form with what you had typed, except passphrases, keys and files; press **Save** again. The event log records the lock together with the action that was not carried out.
 
@@ -138,11 +141,11 @@ The next screen shows the passport's two keys, just like your identity's. Write 
 
 All times in the DPP Manager are shown in UTC and labelled so – the same time base as the event log, the DPP Service and the custodian.
 
-{% include figure.html src="/assets/img/screens/getting-started-submitted.png" alt="Screenshot of the passport page after submission: the passport identifier did:oyd:zQmVWGg…, where it points, and the section Submitting with the time, the service https://dpp-service.ownyourdata.eu and the note 'The service holds this version'." caption="Submitted. The DPP Manager keeps what the service accepted, so you can look it up even when the service is not reachable." screenshot=true width="960" height="390" %}
+{% include figure.html src="/assets/img/screens/getting-started-submitted.png" alt="Screenshot of the passport page after submission: the section 'The passport identifier' with the identifier did:oyd:zQmNnP7…, created 2026-10-18 09:54 UTC, and where it points; then the section Submitting: submitted 2026-10-18 09:55 UTC to https://dpp-service.ownyourdata.eu, no period set, and the note 'The service holds this version'." caption="Submitted. The DPP Manager keeps what the service accepted, so you can look it up even when the service is not reachable. Every time is in UTC." screenshot=true width="954" height="350" %}
 
 With a custodian set, the DPP Manager signs a **mandate** at the same time: this service may keep this one passport in this one collection, for 90 days. A fresh mandate is one click. A hash of the content is also recorded in the passport identifier's log – the [content binding]({{ '/public-availability/' | relative_url }}) that lets any reader check that nothing was changed.
 
-{% include figure.html src="/assets/img/screens/getting-started-custody.png" alt="Screenshot of the sections 'Who holds this passport' – custodian https://dpp-staging.go-data.at, collection 198, mandate signed and valid for 90 days, covering create, update and delete, with buttons 'Sign a fresh mandate' and 'Compare with the service' – and 'Content binding' with the attested hash and the note 'The payload is attested'." caption="Who keeps the passport, under which mandate – and the hash that binds its content." screenshot=true width="960" height="450" %}
+{% include figure.html src="/assets/img/screens/getting-started-custody.png" alt="Screenshot of the sections 'Who holds this passport' – custodian https://dpp-staging.go-data.at, collection 201, mandate signed on 2026-10-18 09:55 UTC and valid until 2027-01-16 09:55 UTC, covering create, update and delete, with buttons 'Sign a fresh mandate' and 'Compare with the service' – and 'Content binding' with the attested hash and the note 'The payload is attested'." caption="Who keeps the passport, under which mandate – and the hash that binds its content." screenshot=true width="954" height="438" %}
 
 ## 8. Open and check it
 
@@ -152,7 +155,7 @@ The passport is now live. Open the product identifier in any browser – a phone
 
 Then paste the same link into the [DPP Linter](https://dpplint.ownyourdata.eu/). It fetches the passport the way any reader does and checks it against the criteria derived from EN 18219, EN 18223 and the regulations.
 
-{% include figure.html src="/assets/img/screens/getting-started-linter.png" alt="Screenshot of the DPP Linter for the example product identifier: '6 of 6 automated checks passed (0 failed, 1 with warnings, 0 skipped)', proposed criteria 10 of 10 passed, retrieved with HTTP 200 as JSON. Warnings for DPP-ID-016, no linked verifiable credentials for the operator's identity, and DPP-SEC-013, content attested with the key of the passport identifier rather than the operator's; DPP-CAR-002, DPP-CFG-005, DPP-DAT-003 and DPP-DAT-014 passed." caption="All automated checks passed. Both warnings concern the operator's identity, not the content of the passport." screenshot=true width="940" height="810" %}
+{% include figure.html src="/assets/img/screens/getting-started-linter.png" alt="Screenshot of the DPP Linter for an earlier example passport of the same kind, KB-0001: '6 of 6 automated checks passed (0 failed, 1 with warnings, 0 skipped)', proposed criteria 10 of 10 passed, retrieved with HTTP 200 as JSON. Warnings for DPP-ID-016, no linked verifiable credentials for the operator's identity, and DPP-SEC-013, content attested with the key of the passport identifier rather than the operator's; DPP-CAR-002, DPP-CFG-005, DPP-DAT-003 and DPP-DAT-014 passed." caption="All automated checks passed. Both warnings concern the operator's identity, not the content of the passport." screenshot=true width="940" height="810" %}
 
 The warnings are expected for now. **DPP-ID-016:** the operator's identity is self-issued and carries no credentials from a trusted body yet – one of the points [still open]({{ '/reference-architecture/' | relative_url }}) in the CIRPASS-2 comparison. **DPP-SEC-013**, a proposed criterion: the content is attested with the key of the passport identifier, which is not yet linked to the operator's identity.
 

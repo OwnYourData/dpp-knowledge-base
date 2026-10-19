@@ -4,7 +4,7 @@ description: Not every field of a passport is for everyone. How the DPP Service 
 section: Concepts
 order: 2
 audience: economic operators, DPP service providers, developers
-last_reviewed: 2026-10-16
+last_reviewed: 2026-10-19
 image: /assets/img/access-classes.svg
 image_alt: "Matrix of readers and access classes. Anyone sees the public part; a repair shop or recycler with an access grant also sees the legitimate-interest part; authorities and the owning economic operator see the whole passport."
 image_caption: "Three access classes, using a battery passport as the example. Whoever may read a class also reads every class to its left."
@@ -100,6 +100,8 @@ A passport with a policy is held as **two cards** at its custodian:
 - the **public card** with the header and the public attributes, served to anyone – including through the link on the product itself;
 - the **controlled card** with everything else, which only the DPP Service reads, under its own read grant.
 
+For that read grant, the custodian enters the DPP Service as **reader** of the operator's collection. A passport with attributes that are not public is accepted only for a collection where this reader is entered. Otherwise the write is refused with `400` and the message code `readerNotEntered`, and nothing is written at the service or at the custodian. The refusal names the custodian, the collection and the reader to enter; the DPP Manager shows them on the passport page, with the reader ready to copy and pass on to the custodian.
+
 The public card carries a salted hash of the controlled part. Before the service hands out anything controlled, it checks the hash. If the two do not match, it hands out nothing controlled at all.
 
 ### Step 2: grant access
@@ -135,9 +137,25 @@ The answer is always an ordinary EN 18223 passport – with more or fewer data e
 
 Earlier versions of a passport, read through the DPP Service, are filtered by today's policy: an attribute that is controlled now is not handed out from a version in which it was still public.
 
+### When the controlled part cannot be read
+
+Sometimes a reader's access rights reach further than what the service can read at the custodian. The reader then gets what a reader without access rights gets – the public part, with `200` – and a response header says why:
+
+- **The custodian has not entered the DPP Service as reader** of the passport's collection. The reader gets the public part; the reason is `readerNotEntered`.
+- **An earlier version is read at a custodian that does not serve earlier versions of the controlled card.** The reader gets the public part of that version; the reason is `versionsNotServed`.
+
+The header then reads, for the two cases:
+
+```http
+X-DPP-Controlled-Part: unavailable;reason=readerNotEntered
+X-DPP-Controlled-Part: unavailable;reason=versionsNotServed
+```
+
+The header that names the applied classes, `X-DPP-Access-Roles`, is then left out, because nothing beyond the public part was applied. A single data element of the controlled part is answered with `404` and the same header. Any other failure at the custodian is answered with `502`. The economic operator settles the first case with the custodian, which enters the reader; nothing changes in the passport.
+
 ## Every access leaves a trace
 
-The service keeps an **access log**. It records every read of controlled data, every refused attempt by a reader with a valid token but no valid grant, every grant registered and every revocation. It never records content or tokens.
+The service keeps an **access log**. It records every read of controlled data, every refused attempt by a reader with a valid token but no valid grant, every grant registered and every revocation. A read whose controlled part could not be read is recorded with its reason, `readerNotEntered` or `versionsNotServed`. The log never records content or tokens.
 
 - The **owner** of a passport sees every entry for its passports.
 - A **reader** sees its own reads and refusals.
