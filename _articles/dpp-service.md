@@ -4,7 +4,7 @@ description: The open-source service that stores, versions and serves Digital Pr
 section: Tools
 order: 0
 audience: DPP service providers, developers, economic operators
-last_reviewed: 2026-10-19
+last_reviewed: 2026-10-20
 image: /assets/img/dpp-service-overview.svg
 image_alt: "Diagram: economic operators write to the DPP Service with requests signed by their own did:oyd; readers read the public part without an account, or more with a grant. The service checks signature and owner, binds content, applies access policies and grants, keeps an access log and versions, and stores passports in its own database or at a custodian under a mandate."
 image_caption: "What the DPP Service does between the operator who writes and the readers who read."
@@ -62,7 +62,7 @@ The DPP Service of OwnYourData is one complete, open implementation of it. It is
 | **Lifecycle** | create, read by passport or product identifier, update (as a JSON merge patch), delete, read the version valid at a given date, look up passport identifiers for a list of products |
 | **Fine-granular** | read or update a single data element or collection |
 | **Registry** | register a passport with the EU registry – not connected yet: the service answers `502` with the message code `registryNotConnected` and registers nothing |
-| **Beyond the standard** | change of custodian, the mandate for the custodian, access policies, access grants, the access log, and a discovery document at `/.well-known/dpp-service` |
+| **Beyond the standard** | change of custodian, the mandate for the custodian, the economic operator's signature, access policies, access grants, the access log, and a discovery document at `/.well-known/dpp-service` |
 
 The whole contract is published as an OpenAPI description and rendered at [/api-docs](/api-docs/index.html).
 
@@ -77,6 +77,8 @@ The service resolves the DID, checks the signature, and remembers who created ea
 **Content binding.** After a write, the hash of the published content is recorded in the passport's own DID document. Anyone can check later that what they receive is what the operator published – see [Public availability]({{ '/public-availability/' | relative_url }}).
 
 **Role-based access.** The operator can classify each attribute as public, for readers with a legitimate interest, or for authorities only. The service then gives each reader exactly the parts it may read, and logs every read of controlled data. If the controlled part cannot be read at the custodian, a reader with access rights still gets the public part, and the response header `X-DPP-Controlled-Part` says why – see [Role-based access to passport data]({{ '/role-based-access/' | relative_url }}).
+
+**The economic operator's signature.** For a passport it keeps in its own database, the service accepts a signature of the economic operator over the public part, checks it, and hands it out with `Accept: application/jose`; the header `X-DPP-Signature-State` says whether it is current. The service never signs itself – see [The economic operator's signature on a passport]({{ '/operator-signature/' | relative_url }}).
 
 **Versions and end of life.** Every change is kept: the version valid at any past date can be read back. When a passport is ended, the service stops serving it and keeps the final state as history.
 

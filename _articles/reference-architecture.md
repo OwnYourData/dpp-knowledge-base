@@ -4,7 +4,7 @@ description: The EU project CIRPASS-2 describes what a complete DPP system consi
 section: Concepts
 order: 4
 audience: DPP service providers, developers, architects
-last_reviewed: 2026-10-17
+last_reviewed: 2026-10-20
 image: /assets/img/reference-architecture-roles.svg
 image_alt: "The roles of the CIRPASS-2 reference architecture and what fills each of them here. Responsible economic operator: DPP Manager and product types in SOyA. DPP service providers: the DPP Service of OwnYourData and the custodian of DID FlexCo; a back-up provider is not appointed yet. End users and independent operators: any phone for the public part, repairers and recyclers with an access grant for more. Other actors: DPP Linter, DPP Service Validator, criteria catalogue. Credentials agencies: access grants signed by the operator or by a listed authority issuer; eIDAS role credentials not used yet. Public authorities: EU registry and web portal, not connected yet. Underneath: OYDID and SOyA as shared building blocks."
 image_caption: "The roles of the CIRPASS-2 reference architecture, and what fills each of them here. Dashed: not connected or not covered yet."
@@ -107,7 +107,7 @@ The 25 recommendations are where D4.1 becomes concrete. Those that concern our t
 | 3.3 Extend the standard lifecycle API | all methods of EN 18222:2026, plus custodian change, access policies, grants and the access log | yes |
 | 3.7 Generic roles, role-based access | three ordered classes – public, legitimate interest, authority – and signed grants valid for at most a year, the interim path D4.1 itself describes until eIDAS credentials are common | yes |
 | 3.8 Structure passports for role-based access | public and controlled part, bound by a hash – see below | differently |
-| 3.10 Passport as a Verifiable Credential | a hash of the content in the identifier's signed log instead of a signature on the document | differently |
+| 3.10 Passport as a Verifiable Credential | a hash of the content in the identifier's signed log; for passports the DPP Service keeps itself, also a signature of the economic operator over the public part – a JWS, not a Verifiable Credential | differently |
 | 3.11 Immutable records | every version kept and readable by date; the identifier's log only grows | yes |
 | 3.16 Resolution by the responsible operator | the link is on the operator's own domain; its DNS decides which custodian answers | yes |
 | 3.20 Item-level identifiers where updates are expected | serial number in the Digital Link | yes |
@@ -126,7 +126,7 @@ Here there is **one controlled part** with every attribute that is not public, a
 - The **public card** – what the link on the product returns – carries a salted digest of the controlled part. Any change to protected data changes the public card.
 - The **passport identifier** carries the hash of the public card in its signed log. A reader who hashes what it received and compares knows the content is what the operator committed – for the public part directly, for the protected part through the digest.
 
-The result is one entry point, no copies per role, and an integrity check that needs nothing but public web requests. What it does not give is a signature on the passport document itself, as recommendation 3.10 asks.
+The result is one entry point, no copies per role, and an integrity check that needs nothing but public web requests. A signature of the economic operator on the passport document, as recommendation 3.10 asks, exists for passports the DPP Service keeps in its own database, not yet for passports held by a custodian – see [The economic operator's signature on a passport]({{ '/operator-signature/' | relative_url }}).
 
 ## What is still open
 
@@ -137,4 +137,4 @@ The result is one entry point, no copies per role, and an integrity check that n
 > - **EU registry.** The registry method is in place; the connection to the EU registry is not.
 {: .open}
 
-This comparison reflects the state of 17 October 2026. D4.1 is published under CC BY 4.0; the pictures here are our own drawings after its role model.
+This comparison reflects the state of 20 October 2026. D4.1 is published under CC BY 4.0; the pictures here are our own drawings after its role model.

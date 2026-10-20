@@ -4,7 +4,7 @@ description: The terms that come up again and again around Digital Product Passp
 section: Basics
 order: 5
 audience: everyone working with Digital Product Passports
-last_reviewed: 2026-10-19
+last_reviewed: 2026-10-20
 image: /assets/img/glossary-map.svg
 image_alt: "A product, as model, batch or item, carries a data carrier such as a QR code. It holds the unique product identifier, a web link, which leads to the passport with its DPP identifier, header and data elements, kept by a custodian. The economic operator writes through the lifecycle API of a DPP service. The EU DPP registry records the identifiers and where each passport is kept. Readers get the public part, and more according to access class and access grant."
 image_caption: "How the main terms fit together."
@@ -156,6 +156,9 @@ Public part
 : The part of a passport that anyone can read through the link on the product, without an account. It carries a salted digest of the controlled part.
 
 ## S
+
+Signature of the economic operator
+: A JSON Web Signature with the key of the economic operator's own DID over the public part of a passport. It shows who stands behind the content; the hash in the passport identifier shows that the content is unchanged. See [The economic operator's signature on a passport]({{ '/operator-signature/' | relative_url }}).
 
 SOyA
 : The Semantic Overlay Architecture: a way to describe data models with a base structure and overlays for labels, validation and transformation. The DPP Manager uses it for product types.

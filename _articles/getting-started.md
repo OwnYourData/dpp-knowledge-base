@@ -4,7 +4,7 @@ description: From an empty computer to a published Digital Product Passport that
 section: Tools
 order: 1.5
 audience: economic operators trying the tools for the first time
-last_reviewed: 2026-10-19
+last_reviewed: 2026-10-20
 image: /assets/img/getting-started-steps.svg
 image_alt: "Eight steps. Set up once: 1 Start – install the container and choose a passphrase, on your computer. 2 DPP service – enter its address, it tells you the rest. 3 Identity – a key pair of your own, write down the keys. 4 Custodian – an agreement at a data intermediary gives you a pod and a collection. Per passport: 5 Describe – fill in the form of the product type. 6 Identifier – the passport gets an identifier of its own. 7 Submit – the DPP Service stores it, the custodian keeps it. 8 Check – open the link and run the DPP Linter, in any browser."
 image_caption: "Four steps to set up, four steps for every passport."
@@ -72,7 +72,7 @@ Open `http://localhost:3000` and choose a passphrase. It encrypts the one file i
 docker compose pull && docker compose up -d --force-recreate
 ```
 
-Use version 0.1.9 or later; the version is shown at the bottom of every page. Up to version 0.1.6, the DPP Manager wrote the passphrase in plain text into the container's log; recreating the container removes that old log. If you have passed a log of the container on to anyone, change the passphrase under *Data file* – see the [changelog](https://github.com/OwnYourData/dpp-manager-public/blob/main/CHANGELOG.md#017). Since 0.1.8, a form is no longer lost when the data file locks itself (see step 5).
+Use version 0.1.10 or later; the version is shown at the bottom of every page. Up to version 0.1.6, the DPP Manager wrote the passphrase in plain text into the container's log; recreating the container removes that old log. If you have passed a log of the container on to anyone, change the passphrase under *Data file* – see the [changelog](https://github.com/OwnYourData/dpp-manager-public/blob/main/CHANGELOG.md#017). Since 0.1.8, a form is no longer lost when the data file locks itself (see step 5).
 
 **A second DPP Manager** on the same computer goes into a folder of its own, with its own port and container name. Put both into a file `.env` next to `docker-compose.yml`, for example `DPP_MANAGER_PORT=3001` and `DPP_MANAGER_CONTAINER=dpp-manager-2`; the container name can be set this way from version 0.1.9 of `docker-compose.yml`.
 
@@ -80,7 +80,7 @@ Use version 0.1.9 or later; the version is shown at the bottom of every page. Up
 
 The setup starts with the service your passports are written to. Enter its address – here `https://dpp-service.ownyourdata.eu` – and press **Check and continue**.
 
-{% include figure.html src="/assets/img/screens/getting-started-service.png" alt="Screenshot of the DPP Manager setup, step 1 of 4, 'DPP Service': the question 'Which DPP Service do you write to?', the address field filled with https://dpp-service.ownyourdata.eu and the button 'Check and continue'." caption="Only the address is typed in. Everything else – the service's identity, where tokens go – is asked of the service." screenshot=true width="970" height="620" %}
+{% include figure.html src="/assets/img/screens/getting-started-service.png" alt="Screenshot of the DPP Manager setup, step 1 of 4, 'DPP Service': the bar with the link DPP Service on the right, the question 'Which DPP Service do you write to?', the address field filled with https://dpp-service.ownyourdata.eu and the button 'Check and continue'; in the footer 'Developed by OwnYourData', links to the DPP Service and the source code, and Version 0.1.10." caption="Only the address is typed in. Everything else – the service's identity, where tokens go – is asked of the service." screenshot=true width="946" height="800" %}
 
 The DPP Manager only asks the service whether it is there and under which identity it answers. Nothing about you is sent yet.
 
@@ -88,7 +88,7 @@ The DPP Manager only asks the service whether it is there and under which identi
 
 Next comes your identity as an economic operator: a key pair, created on your computer. The name you give it is only for your own overview.
 
-{% include figure.html src="/assets/img/screens/getting-started-identity.png" alt="Screenshot of setup step 2, 'Your identity': an explanation that the private half of the key pair stays on this machine and that the keys stay visible until you confirm that they are stored, a warning 'This is the one thing that cannot be replaced', and the field 'Name for this identity' filled with Example Lighting GmbH." caption="The private key stays on your computer; only the public half is published, so that others can check your signatures." screenshot=true width="970" height="840" %}
+{% include figure.html src="/assets/img/screens/getting-started-identity.png" alt="Screenshot of setup step 2, 'Your identity', with the link DPP Service in the bar: an explanation that the private half of the key pair stays on this machine and that the keys stay visible until you confirm that they are stored, a warning 'This is the one thing that cannot be replaced', and the field 'Name for this identity' filled with Example Lighting GmbH." caption="The private key stays on your computer; only the public half is published, so that others can check your signatures." screenshot=true width="946" height="866" %}
 
 **Create an identity** publishes the public half as a `did:oyd` identifier. The next screen shows two keys – a document key and a revocation key. They stay visible until you confirm that you have stored them, and after that they are not shown again, not even when you open that step once more. Press **Write the key file** and keep a copy somewhere safe: whoever holds these keys speaks for your company, and without them your passports can no longer be changed.
 
@@ -108,7 +108,7 @@ Press **Save**, then **Sign**. Under **My Contracts**, the details of the new ag
 
 Back in the DPP Manager, enter both values in the last setup step. If the address differs from the one shown next to DID FlexCo, choose **A different custodian** and type it in. Then **Save and finish**.
 
-{% include figure.html src="/assets/img/screens/getting-started-custodian.png" alt="Screenshot of setup step 4, 'Where the passport lives', section 'Which one?': the preset DID Daten-Intermediär-Dienste FlexCo with https://dpp.go-data.at, and 'A different custodian' selected with the address of the pod https://dpp-staging.go-data.at; below, the collection 201." caption="Address and collection from the agreement – the setup is complete." screenshot=true width="954" height="467" %}
+{% include figure.html src="/assets/img/screens/getting-started-custodian.png" alt="Screenshot of setup step 4, 'Where the passport lives', section 'Which one?': the preset DID Daten-Intermediär-Dienste FlexCo with https://dpp.go-data.at, and 'A different custodian' selected with the address of the pod https://dpp-staging.go-data.at; below, the collection 201 and the button 'Save and finish'." caption="Address and collection from the agreement – the setup is complete." screenshot=true width="932" height="474" %}
 
 ## 5. Describe the product
 
@@ -157,7 +157,7 @@ Then paste the same link into the [DPP Linter](https://dpplint.ownyourdata.eu/).
 
 {% include figure.html src="/assets/img/screens/getting-started-linter.png" alt="Screenshot of the DPP Linter for https://dpp-staging.go-data.at/01/09520123000028/21/KB-0002: '6 of 6 automated checks passed (0 failed, 1 with warnings, 0 skipped)', proposed criteria 10 of 10 passed, retrieved with HTTP 200 as JSON. Warnings for DPP-ID-016, no linked verifiable credentials for the operator's identity, and DPP-SEC-013, content attested with the key of the passport identifier rather than the operator's; DPP-CAR-002 and DPP-CFG-005 passed." caption="All automated checks passed. Both warnings concern the operator's identity, not the content of the passport." screenshot=true width="940" height="723" %}
 
-The warnings are expected for now. **DPP-ID-016:** the operator's identity is self-issued and carries no credentials from a trusted body yet – one of the points [still open]({{ '/reference-architecture/' | relative_url }}) in the CIRPASS-2 comparison. **DPP-SEC-013**, a proposed criterion: the content is attested with the key of the passport identifier, which is not yet linked to the operator's identity.
+The warnings are expected for now. **DPP-ID-016:** the operator's identity is self-issued and carries no credentials from a trusted body yet – one of the points [still open]({{ '/reference-architecture/' | relative_url }}) in the CIRPASS-2 comparison. **DPP-SEC-013**, a proposed criterion: the content is attested with the key of the passport identifier, which is not yet linked to the operator's identity. A signature of the economic operator closes this gap for passports the DPP Service keeps itself, not yet for passports held by a custodian like this one – see [The economic operator's signature on a passport]({{ '/operator-signature/' | relative_url }}).
 
 ## What comes next
 

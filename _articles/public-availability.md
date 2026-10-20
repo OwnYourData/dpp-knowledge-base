@@ -4,7 +4,7 @@ description: How anyone gets from the code on a product to its passport – with
 section: Concepts
 order: 1
 audience: economic operators, DPP service providers, developers
-last_reviewed: 2026-10-19
+last_reviewed: 2026-10-20
 image: /assets/img/public-access-paths.svg
 image_alt: "Diagram: three ways to the same passport – scanning the product, asking a DPP service, or resolving the passport identifier – all lead to the custodian, which returns a readable page to a browser and JSON to software. The passport's DID document carries a hash of the JSON for checking."
 image_caption: "Three ways in, one passport. Which form comes back depends only on what the client asks for."
@@ -116,6 +116,8 @@ Three ways to do the check:
 - the **DPP Linter** does it for any product identifier you enter;
 - `bin/verify_dpp <product identifier>` from the open-source DPP Service does it on the command line, using nothing but public web requests;
 - the DPP Service reports the hash and whether it is committed in the response headers `X-DPP-Payload-Hash` and `X-DPP-Commit-State`.
+
+The hash shows that the content is unchanged – not who stands behind it. For that, the economic operator can sign the passport with the key of its own identity; see [The economic operator's signature on a passport]({{ '/operator-signature/' | relative_url }}).
 
 ## Public means the public part
 
