@@ -5,3 +5,4 @@ _site
 vendor
 k8s
 .DS_Store
+.github
