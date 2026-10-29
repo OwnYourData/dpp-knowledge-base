@@ -4,7 +4,7 @@ description: How anyone gets from the code on a product to its passport – with
 section: Concepts
 order: 1
 audience: economic operators, DPP service providers, developers
-last_reviewed: 2026-10-20
+last_reviewed: 2026-10-28
 image: /assets/img/public-access-paths.svg
 image_alt: "Diagram: three ways to the same passport – scanning the product, asking a DPP service, or resolving the passport identifier – all lead to the custodian, which returns a readable page to a browser and JSON to software. The passport's DID document carries a hash of the JSON for checking."
 image_caption: "Three ways in, one passport. Which form comes back depends only on what the client asks for."
@@ -39,6 +39,7 @@ related:
 - The code on the product carries one web link. Opening it shows the passport – in a browser as a readable page, to software as JSON.
 - Reading the public part needs no account, no app and no token.
 - The link points to a domain of the economic operator. The passport can move to another custodian without reprinting a single label.
+- A passport without a custodian answers on a carrier host of the DPP Service, such as `id.ownyourdata.eu` – or on the operator's own name.
 - The passport's own identifier carries a hash of its content, so anyone can check that what they received is what the operator published.
 </div>
 
@@ -95,6 +96,33 @@ That one detail decides what happens when the operator changes provider.
 - The **passport identifier**, a `did:oyd`, records the move as an entry in its log, signed with the passport's own key: its `serviceEndpoint` now names the new custodian. Who holds the passport is therefore on record.
 
 The new custodian needs a TLS certificate for the operator's name before the record is switched, and the previous one keeps serving until DNS caches have expired.
+
+## A passport without a custodian
+
+Not every operator uses a custodian. Without one, the DPP Service keeps the passport in its own database – and answers the printed identifier itself, on a **carrier host**: a name that serves only the links on products, separate from the host of the API. For the public instance that host is `id.ownyourdata.eu`, for operators without a domain of their own. The public test passport lives there:
+
+```sh
+curl https://id.ownyourdata.eu/01/09520123456788/21/TEST-SIG-0002
+```
+
+The answer depends only on what the client asks for, and nothing is redirected:
+
+| `Accept` | Answer |
+|---|---|
+| none, `*/*` or `application/json` | the passport as JSON, in the full representation |
+| `text/html` first | the same passport as a page for people, without scripts or cookies |
+| `application/jose` first | the [signature of the economic operator]({{ '/operator-signature/' | relative_url }}), where it covers that JSON |
+
+```sh
+curl -H 'Accept: application/jose, application/json;q=0.5' \
+  https://id.ownyourdata.eu/01/09520123456788/21/TEST-SIG-0002
+```
+
+Every answer carries `Vary: Accept`. The public part needs no token; a reader with access rights presents one, as on the API.
+
+**Your own name works the same way.** An operator with its own domain points a name at the DPP Service by a CNAME record, just as it would at a custodian, and the service answers on it once it is set up for that name. The DPP Manager proposes the carrier host from version 0.1.13: for a passport without a custodian, the product identifier of a new passport starts with `https://id.ownyourdata.eu/01/`, and the passport page warns when an identifier is on a host the service does not answer on.
+
+**Where it does not reach.** Identifiers on `dpp.oydapp.eu` belong to the custodian's host. A passport the DPP Service keeps itself does not resolve there today.
 
 ## Check what you received
 

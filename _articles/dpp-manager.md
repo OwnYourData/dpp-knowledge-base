@@ -4,7 +4,7 @@ description: A free application for economic operators. Describe products, issue
 section: Tools
 order: 1
 audience: economic operators, product and compliance teams
-last_reviewed: 2026-10-20
+last_reviewed: 2026-10-28
 image: /assets/img/dpp-manager-lifecycle.svg
 image_alt: "Diagram: on your own computer, one encrypted file holds keys, product types, passports, access rights and the event log. A passport is described, gets its own identifier, is submitted to a DPP service, kept at a custodian, corrected and finally ended. Access classes and rights decide who reads which part."
 image_caption: "A passport's life in the DPP Manager. Everything on the left stays on your computer."
@@ -87,6 +87,8 @@ A product type is fetched once and kept in the data file. From then on the form,
 
 After every submission and correction, the DPP Manager writes a hash of the published content into the passport's identifier, signed with the passport's own key. Anyone can check later that the passport has not been changed – see [Public availability]({{ '/public-availability/' | relative_url }}).
 
+From version 0.1.11, the DPP Manager also **signs** every version of a passport the DPP Service keeps in its own database, with the key of your identity, and every write it sends names its exact request – see [The economic operator's signature on a passport]({{ '/operator-signature/' | relative_url }}) and [Bound writes and the write log]({{ '/bound-writes/' | relative_url }}). From version 0.1.13 it proposes the carrier host `id.ownyourdata.eu` for the product identifier of a passport without a custodian.
+
 {% include figure.html src="/assets/img/screens/getting-started-custody.png" alt="Screenshot of a passport page, sections 'Who holds this passport' with custodian, collection, mandate dates in UTC, the operations the mandate covers and buttons to sign a fresh mandate or compare with the service, and 'Content binding' with the attested hash and the time it was attested." caption="Who holds the passport, under which mandate, and the hash that binds its content." screenshot=true width="954" height="438" %}
 
 ## Deciding who reads what
@@ -109,5 +111,4 @@ Backing up is copying one file. *Administration → Data file → Create a backu
 ## What it does not do yet
 
 > - The DPP Manager is built for one person acting for one economic operator. Roles – several people acting for the same operator with different permissions – are planned.
-> - It does not yet sign passports as the economic operator; see [The economic operator's signature on a passport]({{ '/operator-signature/' | relative_url }}).
 {: .open}

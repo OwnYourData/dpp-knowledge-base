@@ -4,7 +4,7 @@ description: Not every field of a passport is for everyone. How the DPP Service 
 section: Concepts
 order: 2
 audience: economic operators, DPP service providers, developers
-last_reviewed: 2026-10-19
+last_reviewed: 2026-10-28
 image: /assets/img/access-classes.svg
 image_alt: "Matrix of readers and access classes. Anyone sees the public part; a repair shop or recycler with an access grant also sees the legitimate-interest part; authorities and the owning economic operator see the whole passport."
 image_caption: "Three access classes, using a battery passport as the example. Whoever may read a class also reads every class to its left."
@@ -123,7 +123,7 @@ In the DPP Manager, granting access is a form: the reader's DID, an optional pur
 
 ### Step 3: read
 
-Readers ask the DPP Service with the same kind of short-lived, self-signed token that writers use. The grant itself is not sent; the service finds it by the reader's DID.
+Readers ask the DPP Service with the same kind of short-lived, self-signed token that writers use. Each token is accepted **once**, so a reader signs a fresh one for every call. The grant itself is not sent; the service finds it by the reader's DID. A token that does not hold – expired, for another service, or already used – is answered with `401` and `WWW-Authenticate: Bearer error="invalid_token"`, not read past.
 
 | Reader | Gets |
 |---|---|
@@ -136,6 +136,24 @@ Readers ask the DPP Service with the same kind of short-lived, self-signed token
 The answer is always an ordinary EN 18223 passport – with more or fewer data elements. Attributes a reader may not see are simply absent. A response header names the classes that were applied, and answers with access rights are never stored by a cache.
 
 Earlier versions of a passport, read through the DPP Service, are filtered by today's policy: an attribute that is controlled now is not handed out from a version in which it was still public.
+
+**Single data elements.** The whole passport is always answered with `200` and what the reader may see. A request for one data element beyond the reader's classes is answered by the policy alone, whether the element exists or not:
+
+| Reader | Data element beyond the reader's classes | Path within them that leads nowhere |
+|---|---|---|
+| no token | `401` with `WWW-Authenticate: Bearer` | `404` |
+| valid token | `403` | `404` |
+
+So a request learns that credentials, or other access rights, are needed – and nothing about which elements the passport holds. For an example passport with a controlled part:
+
+```sh
+curl -i 'https://dpp-service.ownyourdata.eu/dpp/v1/dpps/did%3Aoyd%3AzQmRFSFznD9JCks4gwjgY5vqGT2N6D3LcNQ4waWCyETB61y/elements/Durability'
+```
+
+```text
+HTTP/2 401
+www-authenticate: Bearer
+```
 
 ### When the controlled part cannot be read
 

@@ -4,7 +4,7 @@ description: From an empty computer to a published Digital Product Passport that
 section: Tools
 order: 1.5
 audience: economic operators trying the tools for the first time
-last_reviewed: 2026-10-20
+last_reviewed: 2026-10-28
 image: /assets/img/getting-started-steps.svg
 image_alt: "Eight steps. Set up once: 1 Start – install the container and choose a passphrase, on your computer. 2 DPP service – enter its address, it tells you the rest. 3 Identity – a key pair of your own, write down the keys. 4 Custodian – an agreement at a data intermediary gives you a pod and a collection. Per passport: 5 Describe – fill in the form of the product type. 6 Identifier – the passport gets an identifier of its own. 7 Submit – the DPP Service stores it, the custodian keeps it. 8 Check – open the link and run the DPP Linter, in any browser."
 image_caption: "Four steps to set up, four steps for every passport."
@@ -72,7 +72,7 @@ Open `http://localhost:3000` and choose a passphrase. It encrypts the one file i
 docker compose pull && docker compose up -d --force-recreate
 ```
 
-Use version 0.1.10 or later; the version is shown at the bottom of every page. Up to version 0.1.6, the DPP Manager wrote the passphrase in plain text into the container's log; recreating the container removes that old log. If you have passed a log of the container on to anyone, change the passphrase under *Data file* – see the [changelog](https://github.com/OwnYourData/dpp-manager-public/blob/main/CHANGELOG.md#017). Since 0.1.8, a form is no longer lost when the data file locks itself (see step 5).
+Use version 0.1.13 or later; the version is shown at the bottom of every page. **From 1 December 2026, the DPP Service accepts writes only from version 0.1.11 on**, because every write has to name its request – see [Bound writes and the write log]({{ '/bound-writes/' | relative_url }}). Up to version 0.1.6, the DPP Manager wrote the passphrase in plain text into the container's log; recreating the container removes that old log. If you have passed a log of the container on to anyone, change the passphrase under *Data file* – see the [changelog](https://github.com/OwnYourData/dpp-manager-public/blob/main/CHANGELOG.md#017). Since 0.1.8, a form is no longer lost when the data file locks itself (see step 5).
 
 **A second DPP Manager** on the same computer goes into a folder of its own, with its own port and container name. Put both into a file `.env` next to `docker-compose.yml`, for example `DPP_MANAGER_PORT=3001` and `DPP_MANAGER_CONTAINER=dpp-manager-2`; the container name can be set this way from version 0.1.9 of `docker-compose.yml`.
 

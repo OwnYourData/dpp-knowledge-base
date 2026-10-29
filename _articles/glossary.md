@@ -4,7 +4,7 @@ description: The terms that come up again and again around Digital Product Passp
 section: Basics
 order: 5
 audience: everyone working with Digital Product Passports
-last_reviewed: 2026-10-20
+last_reviewed: 2026-10-28
 image: /assets/img/glossary-map.svg
 image_alt: "A product, as model, batch or item, carries a data carrier such as a QR code. It holds the unique product identifier, a web link, which leads to the passport with its DPP identifier, header and data elements, kept by a custodian. The economic operator writes through the lifecycle API of a DPP service. The EU DPP registry records the identifiers and where each passport is kept. Readers get the public part, and more according to access class and access grant."
 image_caption: "How the main terms fit together."
@@ -57,6 +57,9 @@ Battery passport
 : The passport required by the Battery Regulation (EU) 2023/1542 from 18 February 2027 for electric-vehicle batteries, batteries for light means of transport and industrial batteries above 2 kWh. See [Battery passport]({{ '/battery-passport/' | relative_url }}).
 
 ## C
+
+Carrier host
+: A host name on which a DPP service answers the product identifiers printed on products, separate from the host of its API. The public instance uses `id.ownyourdata.eu` for passports without a custodian. See [Public availability]({{ '/public-availability/' | relative_url }}).
 
 CIRPASS-2
 : The EU project that prepares the Digital Product Passport for use at scale. Its reference architecture describes the roles and building blocks of a complete DPP system. See [CIRPASS-2 reference architecture]({{ '/reference-architecture/' | relative_url }}).
@@ -172,3 +175,6 @@ Unique product identifier (UPI)
 
 Working plan
 : The Commission's ESPR and Energy Labelling Working Plan 2025–2030, which sets the order in which product groups get delegated acts.
+
+Write log
+: The record the DPP Service keeps of every write: the token of the request, which names that request in the claim `rqh`, before the change, and the outcome after it. Entries are only ever added. See [Bound writes and the write log]({{ '/bound-writes/' | relative_url }}).

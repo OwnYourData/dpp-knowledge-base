@@ -4,7 +4,7 @@ description: The open-source service that stores, versions and serves Digital Pr
 section: Tools
 order: 0
 audience: DPP service providers, developers, economic operators
-last_reviewed: 2026-10-20
+last_reviewed: 2026-10-28
 image: /assets/img/dpp-service-overview.svg
 image_alt: "Diagram: economic operators write to the DPP Service with requests signed by their own did:oyd; readers read the public part without an account, or more with a grant. The service checks signature and owner, binds content, applies access policies and grants, keeps an access log and versions, and stores passports in its own database or at a custodian under a mandate."
 image_caption: "What the DPP Service does between the operator who writes and the readers who read."
@@ -41,7 +41,7 @@ related:
 <p class="label">In short</p>
 
 - The DPP Service implements the passport **lifecycle API of EN 18222:2026**, with passports in the data model of **EN 18223:2026**.
-- **Reading is public**; writing needs a short-lived token signed with the writer's own `did:oyd` – no client secrets, no accounts.
+- **Reading is public**; writing needs a short-lived token signed with the writer's own `did:oyd`, valid for one request only – no client secrets, no accounts.
 - It binds each passport's content to its identifier, delivers **controlled data per role** and logs every read of it.
 - Passports live in the service's own database or at a **custodian** chosen by the operator.
 - OwnYourData runs a public instance at `dpp-service.ownyourdata.eu`. The code is open source under Apache 2.0 – anyone can run their own.
@@ -68,7 +68,7 @@ The whole contract is published as an OpenAPI description and rendered at [/api-
 
 ## Writing: signed, not shared secrets
 
-The public instance accepts a write only with a **bearer token the writer issues itself**: a JSON Web Token, valid for at most 15 minutes, signed with the document key of the writer's `did:oyd`. There is no account to create and no client secret that could leak.
+The public instance accepts a write only with a **bearer token the writer issues itself**: a JSON Web Token, valid for at most 15 minutes, signed with the document key of the writer's `did:oyd`. There is no account to create and no client secret that could leak. Each token is accepted **once**, so a client signs a fresh one for every call, and the token of a write names the exact request in the claim `rqh`. **From 1 December 2026, a write without `rqh` is refused.** Before it changes anything, the service records the request in a write log – see [Bound writes and the write log]({{ '/bound-writes/' | relative_url }}).
 
 The service resolves the DID, checks the signature, and remembers who created each passport. **Only the DID that created a passport may change it.** Reading needs no token at all.
 
@@ -89,7 +89,7 @@ The service can work in two ways:
 - **Stand-alone**, with passports in its own PostgreSQL database. Nothing else is needed; the [stand-alone guide](https://github.com/OwnYourData/dpp-service-public/blob/main/docs/Standalone.md) sets it up, also as a container.
 - **With a custodian.** The passport is kept by a separate hosting service, under a **mandate** the operator signs: one statement naming one passport, one storage place and a lifetime. The custodian also serves the public part on the link printed on the product. Moving to another custodian changes neither the passport identifier nor the printed link.
 
-The public instance uses the second way. Its custodian is the data intermediary of **DID FlexCo**, an organisation separate from OwnYourData, so that the party serving the API and the party holding the data are not the same.
+The public instance mostly uses the second way. Its custodian is the data intermediary of **DID FlexCo**, an organisation separate from OwnYourData, so that the party serving the API and the party holding the data are not the same. A passport of an operator without a custodian stays in the service's own database, and its printed identifier is answered on the carrier host `id.ownyourdata.eu` – see [Public availability]({{ '/public-availability/' | relative_url }}).
 
 ## The public instance
 
@@ -97,7 +97,7 @@ The public instance uses the second way. Its custodian is the data intermediary 
 |---|---|
 | Base address | `https://dpp-service.ownyourdata.eu/dpp/v1` |
 | API description | [/api-docs](/api-docs/index.html) |
-| Discovery | [/.well-known/dpp-service](/.well-known/dpp-service) – the service's DID, the token audience and the issuers it trusts for authorities |
+| Discovery | [/.well-known/dpp-service](/.well-known/dpp-service) – the service's DID, the token audience, the issuers it trusts for authorities and its carrier hosts |
 | Daily checks | [DPP Service Validator results](https://ownyourdata.github.io/dpp-validator/) |
 
 The instance is checked every day by the [DPP Service Validator]({{ '/dpp-service-validator/' | relative_url }}) – the same checks any other listed service goes through.
