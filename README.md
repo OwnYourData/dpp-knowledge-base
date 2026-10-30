@@ -34,6 +34,23 @@ docker run --rm -p 8080:8080 dpp-knowledge-base
 The site is then at <http://localhost:8080/kb/>. The image builds the site with
 Jekyll, indexes it with Pagefind and serves it with nginx under `/kb/`.
 
+## Publish
+
+The image is built on GitHub, so nothing large goes over the line of whoever
+publishes:
+
+1. Push `main`.
+2. On GitHub, *Actions* → *Build image* → *Run workflow*, with a tag of the form
+   `YYMMDD` plus a letter, for example `261031a`. The workflow builds the image
+   for `linux/amd64` and pushes it to the registry the cluster pulls from,
+   signed in with a repository secret.
+3. When the run is green, roll that tag out with the deploy script that is kept
+   with the cluster manifests in `k8s/` (not part of this repository):
+
+   ```sh
+   ./k8s/deploy.sh 261031a
+   ```
+
 ## Write an article
 
 See [CONTRIBUTING.md](CONTRIBUTING.md): structure, front matter, pictures, and

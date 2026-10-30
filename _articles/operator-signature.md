@@ -4,7 +4,7 @@ description: A hash in the passport identifier shows that the content was not ch
 section: Concepts
 order: 1.5
 audience: economic operators, DPP service providers, developers, anyone who verifies passports
-last_reviewed: 2026-10-28
+last_reviewed: 2026-10-31
 image: /assets/img/operator-signature.svg
 image_alt: "Three steps. 1 Sign: the economic operator fetches the public part of its passport in the full representation without a token and signs it as a compact JWS with the document key of its own DID – alg EdDSA, kid DID#key-doc. 2 Submit: PUT /dpp/v1/dpps/{dppId}/signature with a fresh token of the owner; the DPP Service checks the form, that the signer is the owner, the signature against the DID as resolved now, and that the payload is the passport as delivered now. 3 Verify: a reader asks with Accept: application/jose and representation=full, gets the JWS, checks it against the operator's DID and compares it with the passport. Below, the states in the header X-DPP-Signature-State: none, signed, pending after every write, stale when the key no longer verifies; every version keeps the signature it had."
 image_caption: "Sign, submit, verify. The service keeps the signature but never signs itself."
@@ -134,6 +134,8 @@ curl -H 'Accept: application/jose, application/json;q=0.5' \
   'https://dpp-service.ownyourdata.eu/dpp/v1/dppsByIdAndDate/did%3Aoyd%3AzQmYnNKx1hRRXfz1zd1u68o7pzPQrJZxjepg1ixrj2VXP8x?date=2026-10-28T16:00:00Z&representation=full'
 ```
 
+For TEST-SIG-0002, this date falls on its first version, of 28 October 2026; the version of 29 October carries a signature of its own.
+
 A signature of an earlier version is handed out only while the passport's access policy is the one that version had; under a later policy the version reads differently from what was signed, and the answer is the JSON. The key of an earlier version is not checked again: a later change of key does not undo a signature that held when it was given.
 
 **From the command line.** `bin/verify_dpp` from the open-source DPP Service checks a passport the way any reader can. Its **step 7** fetches the signature at the link on the product and at the service, verifies it against the operator's DID and compares it with the passport delivered at the same address; its **step 8** checks the signature of every version the identifier's log records:
@@ -142,17 +144,22 @@ A signature of an earlier version is handed out only while the passport's access
 bundle exec ruby bin/verify_dpp https://id.ownyourdata.eu/01/09520123456788/21/TEST-SIG-0002
 ```
 
-An excerpt of its output on 28 October 2026 – the test passport gets further versions, so the counts change:
+An excerpt of its output on 31 October 2026 – the test passport gets further versions, so the list grows:
 
 ```text
 7    check the signature of the economic operator
+  delivered at https://id.ownyourdata.eu/01/09520123456788/21/TEST-SIG-0002
   [ ok ] signed by did:oyd:zQmZmMvq…, and the signed content is the passport delivered there
   [ ok ] the signer is the economic operator the passport names
+
 8    check the changes the DID log records
-  1 version(s), 1 signed by the economic operator
+  [ ok ] version of 2026-10-28T15:52:39Z: signed by did:oyd:zQmZmMvq…
+  [ ok ] version of 2026-10-29T11:53:05Z: signed by did:oyd:zQmZmMvq…
+  2 version(s), 2 signed by the economic operator
 
 VERDICT  content attested and unchanged
          signed by its economic operator
+         2 of 2 recorded version(s) signed by its economic operator
 ```
 
 It also says what it does not establish: that the DID belongs to the company it stands for, which would need a Verifiable Credential at the operator's DID, that the trust anchor is an accredited one, and who asked for each change – that is the job of the [write log]({{ '/bound-writes/' | relative_url }}).
@@ -166,4 +173,4 @@ In the [DPP Linter]({{ '/dpp-linter/' | relative_url }}), DPP-SEC-002 checks tha
 > - **Who the signer is.** The signature shows which DID signed. That this DID belongs to a particular company needs a credential from a trusted body, which is not attached yet.
 {: .open}
 
-This article explains how the DPP Service handles the economic operator's signature; it is not legal advice. It reflects the state of 28 October 2026.
+This article explains how the DPP Service handles the economic operator's signature; it is not legal advice. It reflects the state of 31 October 2026.

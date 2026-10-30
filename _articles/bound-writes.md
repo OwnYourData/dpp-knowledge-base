@@ -4,7 +4,7 @@ description: Every token that changes a passport names the one request it was ma
 section: Concepts
 order: 1.7
 audience: economic operators, developers of DPP clients, DPP service providers
-last_reviewed: 2026-10-28
+last_reviewed: 2026-10-31
 image: /assets/img/bound-writes.svg
 image_alt: "Four steps. 1 Token: the writer signs a token with the document key of its own DID – audience this service, at most 15 minutes, a jti accepted once, and the claim rqh, a hash of method, request-target and body. 2 Request: the service compares rqh with the request before anything happens; a token that names another request is refused with 401. 3 Write log: an entry 'request' is written before anything changes, an entry 'outcome' when the request ends; entries are only ever added. 4 Check: the operator exports the entries of a passport, and the owner checks them with bin/verify_writes and the public keys of the signers. Banner: from 1 December 2026 a write without rqh is refused."
 image_caption: "The token names its request, the log keeps it, the owner checks it."
@@ -123,6 +123,40 @@ bundle exec ruby bin/verify_writes writes.jsonl
 
 Across all writes it checks that no `jti` appears twice, that every write has an outcome, and that no version exists without a write. Unbound writes – those from before binding was required – are listed as such. Whoever kept the bodies they sent can compare their digests as well.
 
+**An example.** By 31 October 2026, the public test passport TEST-SIG-0002 had been written four times: created, signed, corrected and signed again. This is the entry of the correction in its export, with the spent token cut short:
+
+```json
+{
+  "at": "2026-10-29T11:53:05.204018Z",
+  "phase": "request",
+  "requestId": "f361ccad0d7f9b7160cdb59ce0579b06",
+  "operation": "UpdateDPPById",
+  "dppId": "did:oyd:zQmYnNKx1hRRXfz1zd1u68o7pzPQrJZxjepg1ixrj2VXP8x",
+  "issuer": "did:oyd:zQmZmMvq…",
+  "jti": "eb0bdc481f9ed22c",
+  "token": "eyJraWQiOi…",
+  "rqh": "Vw7ZJcsple9IDhBhAXyVTz5YPaNBAiSMJpYOr6UCYBk",
+  "bound": true,
+  "method": "PATCH",
+  "target": "/dpp/v1/dpps/did%3Aoyd%3AzQmYnNKx1hRRXfz1zd1u68o7pzPQrJZxjepg1ixrj2VXP8x?representation=full",
+  "bodyDigest": "BIabX0xqxfXidL3UCcyzG7a9D7kDykVbGjqlzAkAnmg"
+}
+```
+
+Its `outcome` entry carries the same `requestId`, the status `200` and the version `2` the correction produced. `bin/verify_writes` on the whole export, with the DIDs shortened:
+
+```text
+[ ok ] 2026-10-28T15:52:39.925204Z  CreateDPP  201 version 1  by did:oyd:zQmZmMvq…
+[ ok ] 2026-10-28T15:52:52.078372Z  submitSignature  200 version 1  by did:oyd:zQmZmMvq…
+[ ok ] 2026-10-29T11:53:05.204018Z  UpdateDPPById  200 version 2  by did:oyd:zQmZmMvq…
+[ ok ] 2026-10-29T11:53:39.794200Z  submitSignature  200 version 2  by did:oyd:zQmZmMvq…
+
+4 writes: 4 bound to their request and verified, 0 unbound, 0 failed
+keys used: did:oyd:zQmZmMvq…#key-doc
+```
+
+Every write of this passport names its request and was asked for with the key of its economic operator; the signatures it submitted are writes of their own.
+
 ## What this establishes – and what not
 
 A bound entry shows that the holder of the issuer's key asked for this request, with this body, at this time. Together with the archived version the request produced and the economic operator's signature over its public part, every change of a passport is bound to the one who asked for it, and every signed version to the one who stands behind it.
@@ -131,4 +165,4 @@ A bound entry shows that the holder of the issuer's key asked for this request, 
 > - **The export comes from the operator.** The owner asks the operator of the service for it; the API does not hand out the log.
 {: .open}
 
-This article explains how the DPP Service binds and records writes; it is not legal advice. It reflects the state of 28 October 2026.
+This article explains how the DPP Service binds and records writes; it is not legal advice. It reflects the state of 31 October 2026.

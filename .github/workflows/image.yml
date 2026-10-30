@@ -19,12 +19,17 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Check the tag
+      - name: Check the tag and the image name
         env:
           TAG: ${{ inputs.tag }}
+          IMAGE: ${{ vars.IMAGE }}
         run: |
           if [[ ! "$TAG" =~ ^[0-9]{6}[a-z]$ ]]; then
             echo "The tag must look like 261029a." >&2
+            exit 1
+          fi
+          if [[ -z "$IMAGE" ]]; then
+            echo "The repository variable IMAGE is not set." >&2
             exit 1
           fi
 
@@ -43,6 +48,6 @@ jobs:
           context: .
           platforms: linux/amd64
           push: true
-          tags: ghcr.io/oyd-private/dpp-knowledge-base:${{ inputs.tag }}
+          tags: ${{ vars.IMAGE }}:${{ inputs.tag }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
