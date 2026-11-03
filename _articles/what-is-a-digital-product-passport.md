@@ -32,6 +32,7 @@ related:
   - role-based-access
   - public-availability
   - dpp-roadmap
+next_steps: [dpp-linter, getting-started]
 ---
 
 <div class="tldr" markdown="1">

@@ -35,6 +35,7 @@ related:
   - role-based-access
   - dpp-roadmap
   - laws-and-standards
+next_steps: [dpp-linter, getting-started]
 ---
 
 <div class="tldr" markdown="1">

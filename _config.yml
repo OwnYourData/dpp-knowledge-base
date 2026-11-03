@@ -7,6 +7,10 @@ url: "https://dpp-service.ownyourdata.eu"
 baseurl: "/kb"
 lang: en
 
+# Adds "Get notified about new Delegated Acts" to the "Next steps" box at the
+# end of the articles that have one (_data/next_steps.yml).
+next_steps_newsletter: false
+
 author:
   name: OwnYourData
   url: "https://www.ownyourdata.eu/en/"

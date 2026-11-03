@@ -9,6 +9,7 @@
 {% seo %}
 <link rel="stylesheet" href="{{ '/assets/css/kb.css' | relative_url }}?v={{ site.time | date: '%s' }}">
 {% if page.search %}<link rel="stylesheet" href="{{ '/pagefind/pagefind-ui.css' | relative_url }}">{% endif %}
+<script src="/consent.js" defer></script>
 </head>
 <body>
 
@@ -35,7 +36,8 @@
     <div>Written and operated by <a href="https://www.ownyourdata.eu/en/">OwnYourData</a> · Content under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> · <a href="https://github.com/OwnYourData/dpp-knowledge-base">Source on GitHub</a></div>
     <div class="legal">
       <a href="https://www.ownyourdata.eu/en/imprint/">Imprint</a>
-      <a href="https://www.ownyourdata.eu/en/privacy-policy/">Privacy</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/privacy#conversion-tracking" data-consent-settings hidden>Cookie settings</a>
     </div>
     <div class="funding">The DPP Knowledge Base is part of <a href="https://dpp-austria.at/">PACE-DPP</a>. This Lighthouse Project has been made possible by financial contributions from the Austrian Federal Ministry of Innovation, Mobility and Infrastructure (<a href="https://www.bmimi.gv.at/en.html">BMIMI</a>, formerly BMK), supported by the Austrian Research Promotion Agency (FFG) under grant number <a href="https://projekte.ffg.at/projekt/5128301">917177</a>, as well as from the German Federal Ministry of Research, Technology and Space (BMFTR, formerly BMWK), supported by the German Research Promotion Agency (DLR-PT).</div>
   </div>

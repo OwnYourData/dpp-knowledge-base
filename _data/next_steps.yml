@@ -1,0 +1,19 @@
+# Links of the "Next steps" box at the end of an article. An article lists the
+# keys it shows in its front matter (next_steps). The newsletter is added to
+# every box when `next_steps_newsletter` is true in _config.yml.
+dpp-linter:
+  title: Check a passport with the DPP Linter
+  text: Paste the link from any product's data carrier. Free, no account.
+  url: "https://dpplint.ownyourdata.eu/"
+getting-started:
+  title: Getting started
+  text: Issue your first passport with the free DPP Manager in a few steps.
+  url: "/kb/getting-started/"
+dpp-manager-image:
+  title: The DPP Manager on Docker Hub
+  text: Pull the image and run it with any program for containers.
+  url: "https://hub.docker.com/r/oydeu/dpp-manager"
+newsletter:
+  title: Get notified about new Delegated Acts
+  text: One short email when the EU brings Digital Product Passports to a further product group.
+  url: "/#newsletter-title"

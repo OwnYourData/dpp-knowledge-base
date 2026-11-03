@@ -29,6 +29,7 @@ related:
   - dpp-manager
   - dpp-service
   - dpp-linter
+next_steps: [dpp-linter, dpp-manager-image]
 ---
 
 <div class="tldr" markdown="1">

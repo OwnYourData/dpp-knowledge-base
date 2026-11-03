@@ -31,6 +31,7 @@ further:                                            # sources and references
     what: what the reader finds there
 related:                                            # file names of other articles
   - what-is-a-digital-product-passport
+next_steps: [dpp-linter, getting-started]           # optional: box "Next steps" at the end, keys from _data/next_steps.yml
 ---
 ```
 

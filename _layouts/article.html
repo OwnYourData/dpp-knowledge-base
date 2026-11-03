@@ -59,4 +59,6 @@ layout: default
     </div>
   </section>
   {% endif %}
+
+  {% if page.next_steps %}{% include next-steps.html keys=page.next_steps %}{% endif %}
 </article>

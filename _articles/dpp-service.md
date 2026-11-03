@@ -35,6 +35,7 @@ related:
   - public-availability
   - role-based-access
   - dpp-service-validator
+next_steps: [dpp-linter, getting-started]
 ---
 
 <div class="tldr" markdown="1">

@@ -1,0 +1,13 @@
+{%- assign keys = include.keys -%}
+{%- if site.next_steps_newsletter -%}{%- assign keys = keys | push: "newsletter" -%}{%- endif -%}
+<section class="next-steps" data-pagefind-ignore aria-labelledby="next-steps-title">
+  <h2 id="next-steps-title">Next steps</h2>
+  <ul>
+    {%- for key in keys %}
+    {%- assign step = site.data.next_steps[key] %}
+    {%- if step %}
+    <li><a href="{{ step.url }}">{{ step.title }}</a><span>{{ step.text }}</span></li>
+    {%- endif %}
+    {%- endfor %}
+  </ul>
+</section>

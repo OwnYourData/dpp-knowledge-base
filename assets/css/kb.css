@@ -164,6 +164,12 @@ figure.fig.hero-fig { margin-top: 0; }
 .further .what { color: var(--muted); font-size: 14px; }
 .related { margin-top: 40px; }
 .related h2 { font-size: 18px; margin: 0 0 14px; }
+.next-steps { margin-top: 40px; background: var(--accent-soft); border-radius: var(--radius); padding: 20px 24px; }
+.next-steps h2 { font-size: 18px; margin: 0 0 10px; }
+.next-steps ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.next-steps li { display: flex; flex-direction: column; gap: 4px; }
+.next-steps a { font-weight: 600; }
+.next-steps span { color: var(--muted); font-size: 14px; }
 
 @media (max-width: 560px) {
   header.site nav a { margin: 0 14px 0 0; }
